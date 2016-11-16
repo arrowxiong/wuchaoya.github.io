@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="其他," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="#mvc
+
+
+为什么需要mvc
+前端mvc的困难在哪里
+AngularJs语言下的mvc
+
+
+为什么需要mvc
+
+代码规模越来越大，切分指责是大势所需
+为了复用，很多逻辑是一摸一样的
+为了后期维护方便：修改一块功能不影响其他功能
+mvc只是手段，终极目的是模块化和复用
+
+前端mvc的困难
+
+操作DOM的代码必须等待整个页面全部加载完成
+多个js文件之间如果出现互相依赖，程序员必须自己解决
+js的原">
+<meta property="og:type" content="article">
+<meta property="og:title" content="mvc">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/angular/mvc/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="#mvc
+
+
+为什么需要mvc
+前端mvc的困难在哪里
+AngularJs语言下的mvc
+
+
+为什么需要mvc
+
+代码规模越来越大，切分指责是大势所需
+为了复用，很多逻辑是一摸一样的
+为了后期维护方便：修改一块功能不影响其他功能
+mvc只是手段，终极目的是模块化和复用
+
+前端mvc的困难
+
+操作DOM的代码必须等待整个页面全部加载完成
+多个js文件之间如果出现互相依赖，程序员必须自己解决
+js的原">
+<meta property="og:updated_time" content="2016-11-16T06:55:07.205Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="mvc">
+<meta name="twitter:description" content="#mvc
+
+
+为什么需要mvc
+前端mvc的困难在哪里
+AngularJs语言下的mvc
+
+
+为什么需要mvc
+
+代码规模越来越大，切分指责是大势所需
+为了复用，很多逻辑是一摸一样的
+为了后期维护方便：修改一块功能不影响其他功能
+mvc只是手段，终极目的是模块化和复用
+
+前端mvc的困难
+
+操作DOM的代码必须等待整个页面全部加载完成
+多个js文件之间如果出现互相依赖，程序员必须自己解决
+js的原">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> mvc | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                mvc
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>#mvc</p>
+<blockquote>
+<ul>
+<li>为什么需要mvc</li>
+<li>前端mvc的困难在哪里</li>
+<li>AngularJs语言下的mvc</li>
+</ul>
+</blockquote>
+<p><strong>为什么需要mvc</strong></p>
+<ul>
+<li>代码规模越来越大，切分指责是大势所需</li>
+<li>为了复用，很多逻辑是一摸一样的</li>
+<li>为了后期维护方便：修改一块功能不影响其他功能</li>
+<li><code>mvc只是手段，终极目的是模块化和复用</code></li>
+</ul>
+<p><strong>前端mvc的困难</strong></p>
+<ul>
+<li>操作DOM的代码必须等待整个页面全部加载完成</li>
+<li>多个js文件之间如果出现互相依赖，程序员必须自己解决</li>
+<li>js的原型继承也给前端编程带来了很多困难</li>
+</ul>
+<h1 id="controller"><a href="#controller" class="headerlink" title="controller"></a>controller</h1><p><em>有两个控制器，但是有一些相同的功能，抽出来做成一个通用的控制器</em><code>这是不对的</code></p>
+<p><code>controller使用过程中的注意点</code></p>
+<ul>
+<li>不要试图复用controller，一点控制器一般只负责一小块视图</li>
+<li>不要再controller中操作DOM,这部是控制器的职责</li>
+<li>不要在controller里面做数据格式化，ng有很好用的表单控件</li>
+<li>不要再controller里面做数据过滤操作，ng有$filter服务</li>
+<li>一般来说，controller是不会互相调用，控制器之间的交互会通过事件进行的</li>
+</ul>
+<p><strong>如何复用view（视图）</strong></p>
+<p>利用<code>directive</code>实现view<br>的复用</p>
+<p><strong>AngularJs的mvc是借助于$scope实现的！！！</strong></p>
+<p>属性的作用域是有一个层次结构的 ，如果在当前作用域没有，那么就像上查找<br>和js原型继承（原型查找）是一样的。<br>$scope也是有事件机制的，两种:向下传播，向上传播</p>
+<p><strong>神奇的$scope</strong></p>
+<ul>
+<li>$scope是一个POJO（plain old JavaScript object）</li>
+<li>$scope提供了一些工具方法$watch()/$apply()</li>
+<li>$scope是表达式的执行环境(或者叫作用域)</li>
+<li>$scope是一个树形的结构，与dom标签平行，可以继承属性和方法</li>
+<li>每一个AngularJs应用只有一个根$scope对象（一般位于ng-app上）</li>
+<li>$scope可以传播事件，类似dom事件，可以向上也可以向下</li>
+<li>可以使用angular.element($0).scope()进行调试<em>AngScope火狐的调试扩展控件</em></li>
+</ul>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/其他/" rel="tag">#其他</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/angular/angular实例/" class="post-nav-title-link" rel="prev" title="基于angular表单验证">
+                <i class="fa fa-chevron-left"></i> 基于angular表单验证 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/angular/依赖注入/" class="post-nav-title-link" rel="next" title="angular路由">
+                angular路由  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#controller"><span class="nav-number">1.</span> <span class="nav-text">controller</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

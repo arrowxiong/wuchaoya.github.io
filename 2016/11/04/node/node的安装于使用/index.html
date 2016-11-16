@@ -1,0 +1,720 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="nvm# js的模块话
+1.0 js的模块化什么是模块化？，模块化的概念最早是后台中德，随着ajax技术的兴起，js在编程中所占的地位越来越高，同时js的文件也相应的越来越多，为了方便文件的管理和更新，提出了js文件的模块化，将同一类型功能组合在一起。
+模块化的演变过程1.普通的方法书写格式
+
+多人开发引起变量污染
+
+2.使用对象的作用域来解决变量污染问题
+
+如果在这个对象中一些属性不为外界所访问">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node的安装">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node/node的安装于使用/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="nvm# js的模块话
+1.0 js的模块化什么是模块化？，模块化的概念最早是后台中德，随着ajax技术的兴起，js在编程中所占的地位越来越高，同时js的文件也相应的越来越多，为了方便文件的管理和更新，提出了js文件的模块化，将同一类型功能组合在一起。
+模块化的演变过程1.普通的方法书写格式
+
+多人开发引起变量污染
+
+2.使用对象的作用域来解决变量污染问题
+
+如果在这个对象中一些属性不为外界所访问">
+<meta property="og:updated_time" content="2016-11-16T06:56:28.924Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node的安装">
+<meta name="twitter:description" content="nvm# js的模块话
+1.0 js的模块化什么是模块化？，模块化的概念最早是后台中德，随着ajax技术的兴起，js在编程中所占的地位越来越高，同时js的文件也相应的越来越多，为了方便文件的管理和更新，提出了js文件的模块化，将同一类型功能组合在一起。
+模块化的演变过程1.普通的方法书写格式
+
+多人开发引起变量污染
+
+2.使用对象的作用域来解决变量污染问题
+
+如果在这个对象中一些属性不为外界所访问">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> node的安装 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                node的安装
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>nvm# js的模块话</p>
+<h2 id="1-0-js的模块化"><a href="#1-0-js的模块化" class="headerlink" title="1.0 js的模块化"></a>1.0 js的模块化</h2><p>什么是模块化？，模块化的概念最早是后台中德，随着ajax技术的兴起，js在编程中所占的地位越来越高，同时js的文件也相应的越来越多，为了方便文件的管理和更新，提出了js文件的模块化，将同一类型功能组合在一起。</p>
+<h3 id="模块化的演变过程"><a href="#模块化的演变过程" class="headerlink" title="模块化的演变过程"></a>模块化的演变过程</h3><p>1.普通的方法书写格式</p>
+<ul>
+<li>多人开发引起变量污染</li>
+</ul>
+<p>2.使用对象的作用域来解决变量污染问题</p>
+<ul>
+<li>如果在这个对象中一些属性不为外界所访问，不能解决</li>
+</ul>
+<p>3.使用函数的方法来私有化变量</p>
+<ul>
+<li>每次使用都需要创建一个实例</li>
+</ul>
+<p>4.使用函数的自执行模式来代替new操作</p>
+<ul>
+<li>如果需要扩展</li>
+</ul>
+<p>5 使用一个自执行函数在原来的对象上扩展方法</p>
+<ul>
+<li>将来自执行的时候要传参数</li>
+</ul>
+<p>6.如果要用到第三方模块需要写在自执行函数的参书上</p>
+<h3 id="JS模块管理工具"><a href="#JS模块管理工具" class="headerlink" title="JS模块管理工具"></a>JS模块管理工具</h3><h4 id="seajs"><a href="#seajs" class="headerlink" title="seajs"></a>seajs</h4><p>seajs:第三方模块管理工具<br>(<a href="http://seajs.org" target="_blank" rel="external">http://seajs.org</a>)</p>
+<p>特点</p>
+<ol>
+<li>sea.js遵循cmd规范</li>
+<li>node.js一般的书写代码</li>
+<li>依赖自动加载</li>
+</ol>
+<p>使用步骤</p>
+<blockquote>
+<ul>
+<li>要定义一个单独的模块:关键字<code>define</code></li>
+<li>要在模版中返回一些方法/属性/对象关键字：<code>exports/module.exports</code></li>
+<li>如果引用一个第三方模块关键字：<code>require</code></li>
+<li>使用seajs定义好的模块关键字：<code>seajs.use</code></li>
+</ul>
+</blockquote>
+<p><em>如果要引用两个或者两个以上模块要在seajs.use的第一个参数传进去一个数组即可,后面的回调函数中传入数组中有几个模块传几个参数</em></p>
+<p><strong>seajs遵循的cmd规范</strong><br>cmd规范的作用：规范明确了模块的的书写方式和基本交互规则</p>
+<h3 id="node的特点"><a href="#node的特点" class="headerlink" title="node的特点"></a>node的特点</h3><p>node 作为一个服务器语言:</p>
+<ol>
+<li>开启 服务器功能</li>
+<li>读写硬盘数据功能</li>
+</ol>
+<h3 id="nvm安装node"><a href="#nvm安装node" class="headerlink" title="nvm安装node"></a>nvm安装node</h3><p>win +r 输入 powershell 确认<br><code>nvm install node版本号</code><br><code>nvm use node版本号</code></p>
+<p>npm 安装 supervisor：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ npm install -g supervisor</div></pre></td></tr></table></figure></p>
+<ol>
+<li>cmd规定define</li>
+</ol>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node/node的全局api/" class="post-nav-title-link" rel="prev" title="node全局api">
+                <i class="fa fa-chevron-left"></i> node全局api 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node/node的文件模块/" class="post-nav-title-link" rel="next" title="node文件模块">
+                node文件模块  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-0-js的模块化"><span class="nav-number">1.</span> <span class="nav-text">1.0 js的模块化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#模块化的演变过程"><span class="nav-number">1.1.</span> <span class="nav-text">模块化的演变过程</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS模块管理工具"><span class="nav-number">1.2.</span> <span class="nav-text">JS模块管理工具</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#seajs"><span class="nav-number">1.2.1.</span> <span class="nav-text">seajs</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#node的特点"><span class="nav-number">1.3.</span> <span class="nav-text">node的特点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#nvm安装node"><span class="nav-number">1.4.</span> <span class="nav-text">nvm安装node</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

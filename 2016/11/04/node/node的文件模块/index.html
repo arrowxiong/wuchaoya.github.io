@@ -1,0 +1,737 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="文件模块什么是文件模块
+nodejs中的核心模块都集成到了node.exe之中，将来不管引用还是使用都非常方便，但是node不可能集成所有，我们还需要根据自己的需求开发自己的模块，像这种模块一般叫做文件模块，或者用户模块，第三方模块。特点：核心模块的运行效率永远要高于文件模块，本质的原因是nodejs在运行起来以后核心模块就已经加载到内存中了，而文件模块还要先读取出来，再转成二进制数据去执行，速度">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node文件模块">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node/node的文件模块/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="文件模块什么是文件模块
+nodejs中的核心模块都集成到了node.exe之中，将来不管引用还是使用都非常方便，但是node不可能集成所有，我们还需要根据自己的需求开发自己的模块，像这种模块一般叫做文件模块，或者用户模块，第三方模块。特点：核心模块的运行效率永远要高于文件模块，本质的原因是nodejs在运行起来以后核心模块就已经加载到内存中了，而文件模块还要先读取出来，再转成二进制数据去执行，速度">
+<meta property="og:updated_time" content="2016-11-16T06:56:32.611Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node文件模块">
+<meta name="twitter:description" content="文件模块什么是文件模块
+nodejs中的核心模块都集成到了node.exe之中，将来不管引用还是使用都非常方便，但是node不可能集成所有，我们还需要根据自己的需求开发自己的模块，像这种模块一般叫做文件模块，或者用户模块，第三方模块。特点：核心模块的运行效率永远要高于文件模块，本质的原因是nodejs在运行起来以后核心模块就已经加载到内存中了，而文件模块还要先读取出来，再转成二进制数据去执行，速度">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> node文件模块 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                node文件模块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="文件模块"><a href="#文件模块" class="headerlink" title="文件模块"></a>文件模块</h2><p><strong>什么是文件模块</strong></p>
+<p>nodejs中的核心模块都集成到了node.exe之中，将来不管引用还是使用都非常方便，但是node不可能集成所有，我们还需要根据自己的需求开发自己的模块，像这种模块一般叫做文件模块，或者用户模块，第三方模块。<br><code>特点</code>：核心模块的运行效率永远要高于文件模块，本质的原因是nodejs在运行起来以后核心模块就已经加载到内存中了，而文件模块还要先读取出来，再转成二进制数据去执行，速度自然会慢好多。</p>
+<p><code>实用技巧</code>：node有一个用户模块社区npmjs，我们可以去 上面下载一些别人开发好的模块，或者将自己写好的模块放到npmjs之中.</p>
+<ol>
+<li><em>在nodejs中有一个约定，所以的功能模块一定要放在一个文件夹下，这个文件夹的名字是固定的，</em><code>node_modules</code>,<em>使用单独的文件夹将实现一种功能的文件包起来。</em></li>
+<li><em>nodejs中还规定了如何写好了一个功能集合，我们称之为包，如果使用这个包的时候，不用写完整路径，只需要写包名就行</em></li>
+</ol>
+<p><strong>require的加载过程</strong></p>
+<ol>
+<li>当nodejs执行require（’包名’）时，会在核心模块中找。</li>
+<li>如果找不到核心模块，就会当前项目的<code>node_modules</code>文件夹下去找包名对应的文件夹。</li>
+<li>如果找到先查看是否有package.json的文件，如果有就加载package.json文件中德main属性对应的模块，找到就加载  。</li>
+<li>如果没有package.json, 找到这个包名以后会直接去这个文件夹下去找一个名为<code>index.js</code>的文件将这个文件中的内容加载出来。</li>
+</ol>
+<ul>
+<li>require无论是核心模块还是文件模块都优先从缓存加载（可以解决一个文件多次引用一个文件模块而反复加载的问题）</li>
+<li>在window中加载一个文件模块要使用./或者../开头（如果不加后缀，nodejs会当作用核心模块或者是包来解析）</li>
+<li>在mac和linux中以/加载是加载一个绝对路径的文件模块，而在window下/表示当前require函数所在文件所在的目录的盘符（比如：c盘，没有意义）</li>
+<li>一个文件模块可以不写扩展名,require()会自动依次按照.js .node .json的顺序进行补齐后加载，如果三个扩展名都没有，则当做目录或者包来加载。如果目录或者包都没有，则报错。<br>所以如果不加后缀，将来如果一个文件返回的是json，那么它的加载性能会慢一点。<br>-<br><strong>package.json又是什么？</strong><br><code>作用：给当前包设置一些重要参数。</code></li>
+</ul>
+<p>生成package.js文件：关键指令npm init -y<br>在包文件夹下打开CMD，输入上面指令，会自动在这个目录下面生成一个package.json文件<br>文件内容：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line"><span class="attr">"name"</span>: <span class="string">"js"</span>,</div><div class="line"><span class="attr">"version"</span>: <span class="string">"1.0.0"</span>,</div><div class="line"><span class="attr">"description"</span>: <span class="string">""</span>,</div><div class="line"><span class="attr">"main"</span>: <span class="string">"abc.js"</span>,</div><div class="line"><span class="attr">"scripts"</span>: &#123;</div><div class="line"><span class="attr">"test"</span>: <span class="string">"echo \"Error: no test specified\" &amp;&amp; exit 1"</span></div><div class="line">&#125;,</div><div class="line"><span class="attr">"keywords"</span>: [],</div><div class="line"><span class="attr">"author"</span>: <span class="string">""</span>,</div><div class="line"><span class="attr">"license"</span>: <span class="string">"ISC"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p><code>属性的作用：</code></p>
+<blockquote>
+<ul>
+<li><code>name</code>:设置当前包的名称（将来发布到npm上的名称）<br>下面是官方给出的一些建议:<ol>
+<li>名字里不要再包含”js”和”node”，因为默认NPM包就是node.js程序，不过你可以通过engines字段来指定。</li>
+<li>名字将会被作为url的一部分，所有要符合http url的一般命名规则，不能包含url非法字符，也不能以.和_开头。</li>
+<li>名字也将作为require()命令的参数，所以应该尽量简明。</li>
+<li>如果包要发布到NPM平台上的话，最好先检查下有没有重名, 并且字母只能全部小写。</li>
+</ol>
+</li>
+</ul>
+<ul>
+<li><p><code>version</code>：设置当前包的版本，例：v2.0.0</p>
+</li>
+<li><p><code>name</code>和<code>version</code>是<code>package.json</code>中最重要的两个字段，也是发布到NPM平台上的唯一标识，如果没有正确设置这两个字段，包就不能发布和被下载。</p>
+</li>
+<li><code>description</code>:设置当前包的描述信息（方便将来其它用户在npm上能名搜索到已发布的包）</li>
+<li><code>main</code>:设置当前包的出口文件</li>
+<li><code>script</code>:这个设置可以使当前包调用NPM一些命令脚本，封装一些功能</li>
+<li><code>keywords</code>：设置当前包的关键字（方便将来其它用户在npm上能名搜索到已发布的包）</li>
+<li><code>author</code>：当前包的作者</li>
+<li><code>license</code>：设置当前包的许可证书版本（BSD-3-Clause,MIT,ISC）<br>这些许可证书规定了将来软件其它人得到以后是否可以做的一些操作：比如：使用，修改，转发， 以及使用项目的一部分出售。<br><em>注意：每一个包都必须要有一个json文件</em></li>
+</ul>
+</blockquote>
+<p><strong>什么是包</strong><br>就是将一组功能相似的文件模块统一放到一个文件夹下，并且为所有的文件模块设置一个统一的出口文件，这样的文件夹在nodejs中被称为包。<br><code>一个符合CommonJS规范的包应该是如下这种结构：</code></p>
+<ul>
+<li>一个package.json文件应该存在于包顶级目录下（必须）</li>
+<li>二进制文件应该包含在bin目录下(非必须)。</li>
+<li>JavaScript代码应该包含在lib目录下（必须）。</li>
+<li>文档应该在doc目录下（非必须）。</li>
+<li>单元测试应该在test目录下（非必须）。</li>
+<li>使用说明放在README.md文件，这个文件必须放在包的顶级目录（必须）</li>
+<li>结构：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">    _包名</div><div class="line">|</div><div class="line">|__package.json</div><div class="line">|</div><div class="line">|__bin</div><div class="line">|  |</div><div class="line">|  |__二进制文件</div><div class="line">|  |</div><div class="line">|__lib</div><div class="line">|  |</div><div class="line">|  |__JavaScript代码</div><div class="line">|</div><div class="line">|__doc</div><div class="line">|  |</div><div class="line">|  |__文档</div><div class="line">|</div><div class="line">|__text</div><div class="line">|  |</div><div class="line">|  |__单元测试</div><div class="line">|</div><div class="line">|__README.md</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p><strong>如何在npm上管理自己的包</strong><br><code>上传</code>:</p>
+<ol>
+<li>创建好一个标准结构的包（注意:一定要满足包的要求），并且在package.json文件中设置好一些参数。</li>
+<li>去npmjs注册一个账号（登录之后点击图像会弹出下拉框，选择profile，会打开记录发布包的历史记录）</li>
+<li>在要发布的文件夹下打开CMD，执行发布指令：<br><code>npm adduser</code>:根据引导，依次输入用户名，密码，以及注册邮箱就行了<br>如果看到：<code>Logged in as jhon_j on https://registry.npmjs.org/.</code>说明登录成功<br>接着<code>npm publish</code>：看到<code>+包名@包版本号</code>指令说明已经上传成功</li>
+</ol>
+<p><code>撤销</code>：npm uppublish 包名@版本号：撤销已经发布的包<br><code>安装</code>：npm install <name>安装nodejs的依赖包，npm install 包名 -g 全局安装</name></p>
+<p><em>由于npm是国外网站，在安装的时候速度可能比较慢。解决办法一：下载一个nrm,通过nrm将npm的登录从国外移动到国内，使用nrm use cnpm指令 解决办法二：安装一个cnpm工具，直接通过cnpm来安装<br>一般哪些包要被全局安装，哪些包要项目安装在npm中的README.md中有介绍，全局包的安装本质上将文件放到了当前使用的nodejs的目录下面,在整个nodejs环境中（不管是什么项目）你都希望用到这个包，就需要安装一个全局包，但是如果只有本项目用到，安装一个本项目包</em></p>
+<p><strong>npm其它常用指令</strong></p>
+<blockquote>
+<ul>
+<li><code>npm adduser</code> ：会引导输入用户名，密码以及注册邮箱（如果登录成功会显示：Logged in as jhon_j on <a href="https://registry.npmjs.org/.）" target="_blank" rel="external">https://registry.npmjs.org/.）</a></li>
+<li><code>npm publish</code>：发布包</li>
+<li><p><code>npm uppublish 包名@版本号</code>：撤销已经发布的包</p>
+</li>
+<li><p><code>npm install &lt;name&gt;</code>安装nodejs的依赖包</p>
+</li>
+</ul>
+</blockquote>
+<p>例如npm install express 就会默认安装express的最新版本，也可以通过在后面加版本号的方式安装指定版本，如npm install express@3.0.6</p>
+<blockquote>
+<ul>
+<li><code>npm install &lt;name&gt; -g</code>将包安装到全局环境中<br>但是代码中，直接通过require()的方式是没有办法调用全局安装的包的。全局的安装是供命令行使用的，就好像全局安装了vmarket后，就可以在命令行中直接运行vm命令</li>
+<li><code>npm install &lt;name&gt; --save</code> 安装的同时，将信息写入package.json中<br>项目路径中如果有package.json文件时，直接使用npm install方法就可以根据dependencies配置安装所有的依赖包<br>这样代码提交到github时，就不用提交node_modules这个文件夹了。</li>
+<li><code>npm init</code> 会引导你创建一个package.json文件，包括名称、版本、作者这些信息等</li>
+<li><code>npm remove &lt;name&gt;</code>移除</li>
+<li><code>npm update &lt;name&gt;</code>更新</li>
+<li><code>npm ls</code> 列出当前安装的了所有包</li>
+<li><code>npm root</code> 查看当前包的安装路径</li>
+<li><code>npm root -g</code> 查看全局的包的安装路径</li>
+<li><code>npm help</code> 帮助，如果要单独查看install命令的帮助，可以使用的npm help install</li>
+</ul>
+</blockquote>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node/node的安装于使用/" class="post-nav-title-link" rel="prev" title="node的安装">
+                <i class="fa fa-chevron-left"></i> node的安装 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/其他/前端资源汇总/" class="post-nav-title-link" rel="next" title="AngularJs">
+                AngularJs  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#文件模块"><span class="nav-number">1.</span> <span class="nav-text">文件模块</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

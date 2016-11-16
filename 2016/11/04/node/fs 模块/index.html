@@ -1,0 +1,718 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="fs&amp;nbsp;模块fs是filesystem的缩写，该模块提供本地文件的读写能力，基本上是POSIX文件操作命令的简单包装。但是，这个模块几乎对所有操作提供异步和同步两种操作方式，供开发者选择。
+
+1.&amp;nbsp;readFile()，readFileSync()readFile方法用于异步读取数据。
+12345fs.readFile(&apos;image.png&apos;, function (err, bu">
+<meta property="og:type" content="article">
+<meta property="og:title" content="fs模块">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node/fs 模块/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="fs&amp;nbsp;模块fs是filesystem的缩写，该模块提供本地文件的读写能力，基本上是POSIX文件操作命令的简单包装。但是，这个模块几乎对所有操作提供异步和同步两种操作方式，供开发者选择。
+
+1.&amp;nbsp;readFile()，readFileSync()readFile方法用于异步读取数据。
+12345fs.readFile(&apos;image.png&apos;, function (err, bu">
+<meta property="og:updated_time" content="2016-11-16T06:56:26.846Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="fs模块">
+<meta name="twitter:description" content="fs&amp;nbsp;模块fs是filesystem的缩写，该模块提供本地文件的读写能力，基本上是POSIX文件操作命令的简单包装。但是，这个模块几乎对所有操作提供异步和同步两种操作方式，供开发者选择。
+
+1.&amp;nbsp;readFile()，readFileSync()readFile方法用于异步读取数据。
+12345fs.readFile(&apos;image.png&apos;, function (err, bu">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> fs模块 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                fs模块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="fs-nbsp-模块"><a href="#fs-nbsp-模块" class="headerlink" title="fs&nbsp;模块"></a>fs&nbsp;模块</h1><p>fs是filesystem的缩写，该模块提供本地文件的读写能力，基本上是POSIX文件操作命令的简单包装。但是，这个模块几乎对所有操作提供异步和同步两种操作方式，供开发者选择。</p>
+<hr>
+<h2 id="1-nbsp-readFile-，readFileSync"><a href="#1-nbsp-readFile-，readFileSync" class="headerlink" title="1.&nbsp;readFile()，readFileSync()"></a>1.&nbsp;readFile()，readFileSync()</h2><p>readFile方法用于异步读取数据。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">fs.readFile(<span class="string">'image.png'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, buffer</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">  process(buffer);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>readFile方法的第一个参数是文件的路径，可以是绝对路径，也可以是相对路径。如果是相对路径，就是想对于当前脚本所在的路径。</p>
+<p>readFile方法的第二个参数是读取完成后的回调函数。该函数的第一个参数是发生错误时的错误对象，第二个参数是代表文件内容的Buffer实例。</p>
+<p>readFileSync方法用于同步读取文件，返回一个字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> text = fs.readFileSync(fileName, <span class="string">'utf8'</span>);</div><div class="line"></div><div class="line"><span class="comment">// 将文件按行拆成数组</span></div><div class="line">text.split(<span class="regexp">/\r?\n/</span>).forEach(<span class="function"><span class="keyword">function</span> (<span class="params">line</span>) </span>&#123;</div><div class="line">  <span class="comment">// ...</span></div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>readFileSync方法的第一个参数是文件路径，第二个参数可以是一个表示配置的对象，也可以是一个表示文本文件编码的字符串。默认的配置对象是{ encoding: null, flag: ‘r’ }，即文件编码默认为null，读取模式默认为r（只读）。如果第二个参数不指定编码（encoding），readFileSync方法返回一个Buffer实例，否则返回的是一个字符串。</p>
+<p>不同系统的行结尾字符不同，可以用下面的方法判断。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="comment">// 方法一，查询现有的行结尾字符</span></div><div class="line"><span class="keyword">var</span> EOL =</div><div class="line">  fileContents.indexOf(<span class="string">'\r\n'</span>) &gt;= <span class="number">0</span> ? <span class="string">'\r\n'</span> : <span class="string">'\n'</span>;</div><div class="line"></div><div class="line"><span class="comment">// 方法二，根据当前系统处理</span></div><div class="line"><span class="keyword">var</span> EOL =</div><div class="line">  (process.platform === <span class="string">'win32'</span> ? <span class="string">'\r\n'</span> : <span class="string">'\n'</span>);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="2-nbsp-writeFile-writeFileSync"><a href="#2-nbsp-writeFile-writeFileSync" class="headerlink" title="2.&nbsp;writeFile(),writeFileSync()"></a>2.&nbsp;writeFile(),writeFileSync()</h2><p>writeFile方法用于异步写入文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">fs.writeFile(<span class="string">'message.txt'</span>, <span class="string">'Hello Node.js'</span>, (err) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'It\'s saved!'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面代码中，writeFile方法的第一个参数是写入的文件名，第二个参数是写入的字符串，第三个参数是回调函数。</p>
+<p>回调函数前面，还可以再加一个参数，表示写入字符串的编码（默认是utf8）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">fs.writeFile(<span class="string">'message.txt'</span>, <span class="string">'Hello Node.js'</span>, <span class="string">'utf8'</span>, callback);</div></pre></td></tr></table></figure>
+<p>writeFileSync方法用于同步写入文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">fs.writeFileSync(fileName, str, <span class="string">'utf8'</span>);</div></pre></td></tr></table></figure>
+<p>它的第一个参数是文件路径，第二个参数是写入文件的字符串，第三个参数是文件编码，默认为utf8。</p>
+<hr>
+<h2 id="3-nbsp-exists-path-callback"><a href="#3-nbsp-exists-path-callback" class="headerlink" title="3.&nbsp;exists(path, callback)"></a>3.&nbsp;exists(path, callback)</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">exists方法用来判断给定路径是否存在，然后不管结果如何，都会调用回调函数。</div><div class="line">fs.exists(<span class="string">'/path/to/file'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">exists</span>) </span>&#123;</div><div class="line">  util.debug(exists ? <span class="string">"it's there"</span> : <span class="string">"no file!"</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面代码表明，回调函数的参数是一个表示文件是否存在的布尔值。</p>
+<p>需要注意的是，不要在open方法之前调用exists方法，open方法本身就能检查文件是否存在。</p>
+<p>下面的例子是如果给定目录存在，就删除它。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">if</span> (fs.existsSync(outputFolder)) &#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Removing '</span> + outputFolder);</div><div class="line">  fs.rmdirSync(outputFolder);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="4-nbsp-mkdir-，writeFile-，readFile"><a href="#4-nbsp-mkdir-，writeFile-，readFile" class="headerlink" title="4.&nbsp;mkdir()，writeFile()，readFile()"></a>4.&nbsp;mkdir()，writeFile()，readFile()</h2><p>mkdir方法用于新建目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.mkdir(<span class="string">'./helloDir'</span>,<span class="number">0777</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>mkdir接受三个参数，第一个是目录名，第二个是权限值，第三个是回调函数。</p>
+<p>writeFile方法用于写入文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.writeFile(<span class="string">'./helloDir/message.txt'</span>, <span class="string">'Hello Node'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'文件写入成功'</span>);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>readFile方法用于读取文件内容。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readFile(<span class="string">'./helloDir/message.txt'</span>,<span class="string">'UTF-8'</span> ,<span class="function"><span class="keyword">function</span> (<span class="params">err, data</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">  <span class="built_in">console</span>.log(data);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>上面代码使用readFile方法读取文件。readFile方法的第一个参数是文件名，第二个参数是文件编码，第三个参数是回调函数。可用的文件编码包括“ascii”、“utf8”和“base64”。如果没有指定文件编码，返回的是原始的缓存二进制数据，这时需要调用buffer对象的toString方法，将其转为字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line">fs.readFile(<span class="string">'example_log.txt'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, logData</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line">  <span class="keyword">var</span> text = logData.toString();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>readFile方法是异步操作，所以必须小心，不要同时发起多个readFile请求。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i = <span class="number">1</span>; i &lt;= <span class="number">1000</span>; i++) &#123;</div><div class="line">  fs.readFile(<span class="string">'./'</span>+i+<span class="string">'.txt'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">     <span class="comment">// do something with the file</span></div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>上面代码会同时发起1000个readFile异步请求，很快就会耗尽系统资源。</p>
+<hr>
+<h2 id="5-nbsp-mkdirSync-，writeFileSync-，readFileSync"><a href="#5-nbsp-mkdirSync-，writeFileSync-，readFileSync" class="headerlink" title="5.&nbsp;mkdirSync()，writeFileSync()，readFileSync()"></a>5.&nbsp;mkdirSync()，writeFileSync()，readFileSync()</h2><p>这三个方法是建立目录、写入文件、读取文件的同步版本。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">fs.mkdirSync(<span class="string">'./helloDirSync'</span>,<span class="number">0777</span>);</div><div class="line">fs.writeFileSync(<span class="string">'./helloDirSync/message.txt'</span>, <span class="string">'Hello Node'</span>);</div><div class="line"><span class="keyword">var</span> data = fs.readFileSync(<span class="string">'./helloDirSync/message.txt'</span>,<span class="string">'UTF-8'</span>);</div><div class="line"><span class="built_in">console</span>.log(<span class="string">'file created with contents:'</span>);</div><div class="line"><span class="built_in">console</span>.log(data);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="6-nbsp-readdir-，readdirSync"><a href="#6-nbsp-readdir-，readdirSync" class="headerlink" title="6.&nbsp;readdir()，readdirSync()"></a>6.&nbsp;readdir()，readdirSync()</h2><p>readdir方法用于读取目录，返回一个所包含的文件和子目录的数组。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">fs.readdir(process.cwd(), <span class="function"><span class="keyword">function</span> (<span class="params">err, files</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) &#123;</div><div class="line">    <span class="built_in">console</span>.log(err);</div><div class="line">    <span class="keyword">return</span>;</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  <span class="keyword">var</span> count = files.length;</div><div class="line">  <span class="keyword">var</span> results = &#123;&#125;;</div><div class="line">  files.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">filename</span>) </span>&#123;</div><div class="line">    fs.readFile(filename, <span class="function"><span class="keyword">function</span> (<span class="params">data</span>) </span>&#123;</div><div class="line">      results[filename] = data;</div><div class="line">      count--;</div><div class="line">      <span class="keyword">if</span> (count &lt;= <span class="number">0</span>) &#123;</div><div class="line">        <span class="comment">// 对所有文件进行处理</span></div><div class="line">      &#125;</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>readdirSync方法是readdir方法的同步版本。下面是同步列出目录内容的代码。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> files = fs.readdirSync(dir);</div><div class="line">files.forEach(<span class="function"><span class="keyword">function</span> (<span class="params">filename</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> fullname = path.join(dir,filename);</div><div class="line">  <span class="keyword">var</span> stats = fs.statSync(fullname);</div><div class="line">  <span class="keyword">if</span> (stats.isDirectory()) filename += <span class="string">'/'</span>;</div><div class="line">  process.stdout.write(filename + <span class="string">'\t'</span> +</div><div class="line">    stats.size + <span class="string">'\t'</span> +</div><div class="line">    stats.mtime + <span class="string">'\n'</span></div><div class="line">  );</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="7-nbsp-stat"><a href="#7-nbsp-stat" class="headerlink" title="7.&nbsp;stat()"></a>7.&nbsp;stat()</h2><p>stat方法的参数是一个文件或目录，它产生一个对象，该对象包含了该文件或目录的具体信息。我们往往通过该方法，判断正在处理的到底是一个文件，还是一个目录。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.readdir(<span class="string">'/etc/'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err, files</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line"></div><div class="line">  files.forEach( <span class="function"><span class="keyword">function</span> (<span class="params">file</span>) </span>&#123;</div><div class="line">    fs.stat(<span class="string">'/etc/'</span> + file, <span class="function"><span class="keyword">function</span> (<span class="params">err, stats</span>) </span>&#123;</div><div class="line">      <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line"></div><div class="line">      <span class="keyword">if</span> (stats.isFile()) &#123;</div><div class="line">        <span class="built_in">console</span>.log(<span class="string">"%s is file"</span>, file);</div><div class="line">      &#125;</div><div class="line">      <span class="keyword">else</span> <span class="keyword">if</span> (stats.isDirectory ()) &#123;</div><div class="line">      <span class="built_in">console</span>.log(<span class="string">"%s is a directory"</span>, file);</div><div class="line">      &#125;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'stats:  %s'</span>,<span class="built_in">JSON</span>.stringify(stats));</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="8-nbsp-watchfile-，unwatchfile"><a href="#8-nbsp-watchfile-，unwatchfile" class="headerlink" title="8.&nbsp;watchfile()，unwatchfile()"></a>8.&nbsp;watchfile()，unwatchfile()</h2><p>watchfile方法监听一个文件，如果该文件发生变化，就会自动触发回调函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line">fs.watchFile(<span class="string">'./testFile.txt'</span>, <span class="function"><span class="keyword">function</span> (<span class="params">curr, prev</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'the current mtime is: '</span> + curr.mtime);</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'the previous mtime was: '</span> + prev.mtime);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">fs.writeFile(<span class="string">'./testFile.txt'</span>, <span class="string">"changed"</span>, <span class="function"><span class="keyword">function</span> (<span class="params">err</span>) </span>&#123;</div><div class="line">  <span class="keyword">if</span> (err) <span class="keyword">throw</span> err;</div><div class="line"></div><div class="line">  <span class="built_in">console</span>.log(<span class="string">"file write complete"</span>);   </div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>unwatchfile方法用于解除对文件的监听。</p>
+<hr>
+<h2 id="9-nbsp-createReadStream"><a href="#9-nbsp-createReadStream" class="headerlink" title="9.&nbsp;createReadStream()"></a>9.&nbsp;createReadStream()</h2><p>createReadStream方法往往用于打开大型的文本文件，创建一个读取操作的数据流。所谓大型文本文件，指的是文本文件的体积很大，读取操作的缓存装不下，只能分成几次发送，每次发送会触发一个data事件，发送结束会触发end事件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">readLines</span>(<span class="params">input, func</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> remaining = <span class="string">''</span>;</div><div class="line"></div><div class="line">  input.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">    remaining += data;</div><div class="line">    <span class="keyword">var</span> index = remaining.indexOf(<span class="string">'\n'</span>);</div><div class="line">    <span class="keyword">var</span> last  = <span class="number">0</span>;</div><div class="line">    <span class="keyword">while</span> (index &gt; <span class="number">-1</span>) &#123;</div><div class="line">      <span class="keyword">var</span> line = remaining.substring(last, index);</div><div class="line">      last = index + <span class="number">1</span>;</div><div class="line">      func(line);</div><div class="line">      index = remaining.indexOf(<span class="string">'\n'</span>, last);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    remaining = remaining.substring(last);</div><div class="line">  &#125;);</div><div class="line"></div><div class="line">  input.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (remaining.length &gt; <span class="number">0</span>) &#123;</div><div class="line">      func(remaining);</div><div class="line">    &#125;</div><div class="line">  &#125;);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">func</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'Line: '</span> + data);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">var</span> input = fs.createReadStream(<span class="string">'lines.txt'</span>);</div><div class="line">readLines(input, func);</div></pre></td></tr></table></figure>
+<hr>
+<h2 id="10-nbsp-createWriteStream"><a href="#10-nbsp-createWriteStream" class="headerlink" title="10.&nbsp;createWriteStream()"></a>10.&nbsp;createWriteStream()</h2><p>createWriteStream方法创建一个写入数据流对象，该对象的write方法用于写入数据，end方法用于结束写入操作。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">var</span> out = fs.createWriteStream(fileName, &#123;</div><div class="line">  <span class="attr">encoding</span>: <span class="string">'utf8'</span></div><div class="line">&#125;);</div><div class="line">out.write(str);</div><div class="line">out.end();</div></pre></td></tr></table></figure>
+<p>createWriteStream方法和createReadStream方法配合，可以实现拷贝大型文件。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">fileCopy</span>(<span class="params">filename1, filename2, done</span>) </span>&#123;</div><div class="line">  <span class="keyword">var</span> input = fs.createReadStream(filename1);</div><div class="line">  <span class="keyword">var</span> output = fs.createWriteStream(filename2);</div><div class="line"></div><div class="line">  input.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">d</span>) </span>&#123; output.write(d); &#125;);</div><div class="line">  input.on(<span class="string">'error'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err</span>) </span>&#123; <span class="keyword">throw</span> err; &#125;);</div><div class="line">  input.on(<span class="string">'end'</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    output.end();</div><div class="line">    <span class="keyword">if</span> (done) done();</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>如果你不想去管它，只是实现拷贝的方法可以这样写：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"></div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node/Buffer对象/" class="post-nav-title-link" rel="prev" title="node简介">
+                <i class="fa fa-chevron-left"></i> node简介 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node/node核心模块/" class="post-nav-title-link" rel="next" title="node核心模块">
+                node核心模块  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#fs-nbsp-模块"><span class="nav-number">1.</span> <span class="nav-text">fs 模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-nbsp-readFile-，readFileSync"><span class="nav-number">1.1.</span> <span class="nav-text">1. readFile()，readFileSync()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-nbsp-writeFile-writeFileSync"><span class="nav-number">1.2.</span> <span class="nav-text">2. writeFile(),writeFileSync()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-nbsp-exists-path-callback"><span class="nav-number">1.3.</span> <span class="nav-text">3. exists(path, callback)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-nbsp-mkdir-，writeFile-，readFile"><span class="nav-number">1.4.</span> <span class="nav-text">4. mkdir()，writeFile()，readFile()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-nbsp-mkdirSync-，writeFileSync-，readFileSync"><span class="nav-number">1.5.</span> <span class="nav-text">5. mkdirSync()，writeFileSync()，readFileSync()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#6-nbsp-readdir-，readdirSync"><span class="nav-number">1.6.</span> <span class="nav-text">6. readdir()，readdirSync()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#7-nbsp-stat"><span class="nav-number">1.7.</span> <span class="nav-text">7. stat()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#8-nbsp-watchfile-，unwatchfile"><span class="nav-number">1.8.</span> <span class="nav-text">8. watchfile()，unwatchfile()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#9-nbsp-createReadStream"><span class="nav-number">1.9.</span> <span class="nav-text">9. createReadStream()</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#10-nbsp-createWriteStream"><span class="nav-number">1.10.</span> <span class="nav-text">10. createWriteStream()</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

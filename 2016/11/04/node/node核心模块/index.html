@@ -1,0 +1,746 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="核心模块
+nodejs与commonjs之间的关系nodejs是一种服务器语言。commonjs是nodejs的规范。
+commonjs规范的意义虽然nodejs的语法层面是用js来写的，但是js的标准ECMAScript存在太多的缺陷，它只是规范了javascript中的词法、类型、表达式、方法、对象等基本要素，所以javascript本身是存在的缺点：
+
+没有模块系统（不方便扩展）
+标准库较少">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node核心模块">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node/node核心模块/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="核心模块
+nodejs与commonjs之间的关系nodejs是一种服务器语言。commonjs是nodejs的规范。
+commonjs规范的意义虽然nodejs的语法层面是用js来写的，但是js的标准ECMAScript存在太多的缺陷，它只是规范了javascript中的词法、类型、表达式、方法、对象等基本要素，所以javascript本身是存在的缺点：
+
+没有模块系统（不方便扩展）
+标准库较少">
+<meta property="og:updated_time" content="2016-11-16T06:56:34.591Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node核心模块">
+<meta name="twitter:description" content="核心模块
+nodejs与commonjs之间的关系nodejs是一种服务器语言。commonjs是nodejs的规范。
+commonjs规范的意义虽然nodejs的语法层面是用js来写的，但是js的标准ECMAScript存在太多的缺陷，它只是规范了javascript中的词法、类型、表达式、方法、对象等基本要素，所以javascript本身是存在的缺点：
+
+没有模块系统（不方便扩展）
+标准库较少">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> node核心模块 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                node核心模块
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="核心模块"><a href="#核心模块" class="headerlink" title="核心模块"></a>核心模块</h1><hr>
+<h2 id="nodejs与commonjs之间的关系"><a href="#nodejs与commonjs之间的关系" class="headerlink" title="nodejs与commonjs之间的关系"></a>nodejs与commonjs之间的关系</h2><p>nodejs是一种服务器语言。<br>commonjs是nodejs的规范。</p>
+<h2 id="commonjs规范的意义"><a href="#commonjs规范的意义" class="headerlink" title="commonjs规范的意义"></a>commonjs规范的意义</h2><p>虽然nodejs的语法层面是用js来写的，但是js的标准ECMAScript存在太多的缺陷，它只是规范了javascript中的词法、类型、表达式、方法、对象等基本要素，所以javascript本身是存在的缺点：</p>
+<ol>
+<li>没有模块系统（不方便扩展）</li>
+<li>标准库较少，对于文件系统，I/O流等常见的需求没有标准的API</li>
+<li>没有标准接口，缺少如：WEB胳器，数据库的统一接口</li>
+</ol>
+<p>而nodejs作为一门后台语言，它必须有自己的很多基本功能，而这些功能需要有人来规范有，commonjs就是起的这样一个规范，它规范了：</p>
+<ol>
+<li>javascript必须像后台语言一样具有拥有开发大型web服务器的有能力</li>
+<li>commonjs覆盖了：二进制、字符集编码、I/O流、web服务器…..</li>
+<li>规范了模块与模块之间的引用关系<br>所以commonjs是nodejs的一个规范，它的规范使得nodejs具有的开发服务器的可能。</li>
+</ol>
+<h2 id="什么叫核心模块："><a href="#什么叫核心模块：" class="headerlink" title="什么叫核心模块："></a>什么叫核心模块：</h2><p>commonjs规定的好的功能在nodejs实现了，这样的一些模块我们叫做核心模块。也就是说nodejs中所有文档中给出的api都是核心模块，而我自己写的模块我们称为用户模块</p>
+<h2 id="path"><a href="#path" class="headerlink" title="path"></a>path</h2><p><strong>该模块包括了一些处理文件路径的功能，可以通过 require(‘path’) 方法来使<br>用它。</strong></p>
+<ul>
+<li><p><code>path.basename(path)</code>：该方法返回一个路径中最低一级目录名,如果不传入任何参数：直接获取到传入路径中文件的全名称（文件名+扩展名）,如果传入文件对应的后缀，会将后缀名去掉（传错与不传相同）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">path.basename(<span class="string">'/foo/bar/index.html'</span>)</div><div class="line"><span class="comment">//returns</span></div><div class="line"><span class="comment">//index.html</span></div><div class="line">path.basename(<span class="string">'/foo/bar/index.html'</span>,<span class="string">'.html'</span>)</div><div class="line"><span class="comment">//returns</span></div><div class="line"><span class="comment">//index</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>path.dirname(path)</code>：该方法返回一个路径的目录名</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">path.dirname(<span class="string">'/foo/bar/index.html'</span>)</div><div class="line"><span class="comment">//returns</span></div><div class="line"><span class="comment">//foo/bar</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>path.extname(path)</code>:该方法返回路径中的文件扩展名，即路径最低一级的目录中’.’字符后的任何字<br>符串。如果路径最低一级的目录中’没有’.’ 或者只有’.’，那么该方法返回一<br>个空字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">path.extname(<span class="string">'index.html'</span>)  </div><div class="line"><span class="comment">//returns</span></div><div class="line"><span class="comment">//'.html'</span></div><div class="line">path.extname(<span class="string">'index'</span>)</div><div class="line"><span class="comment">//returns</span></div><div class="line"><span class="comment">//''</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>path.parse(path)</code>：返回一个数组,将传入的路径进行拆分，将路径的各个部分以对象属性的形式返回</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>key</th>
+<th>value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>root</td>
+<td>根目录</td>
+</tr>
+<tr>
+<td>dir</td>
+<td>所在目录</td>
+</tr>
+<tr>
+<td>base</td>
+<td>文件名+扩展名</td>
+</tr>
+<tr>
+<td>ext</td>
+<td>文件扩展名</td>
+</tr>
+<tr>
+<td>name</td>
+<td>文件名</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><p><code>path.format</code>:将一个路径对象传入，返回一个路径的字符串,<code>注意：win下的路径最好加上反斜杠，max系统下不用关注。</code></p>
+</li>
+<li><p><code>path.join</code>：该方法用于合并方法中的各参数并得到一个标准化合并的路径字符串。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">path.join(<span class="string">'aa/bb/cc'</span>,<span class="string">'../bb'</span>)</div><div class="line"><span class="comment">//returns</span></div><div class="line"><span class="comment">//aa/bb</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>path.delimiter</code>：得到当前系统的分界符,如果在win系统下为’;’,在其它系统下为’:’</p>
+</li>
+<li><code>isAbsolute</code>:判断一个路径是否是一个绝对路径</li>
+<li><code>normalize</code>:将一个非标准路径转换成一个标准路径</li>
+<li><code>relative（form路径，to路径）</code>:orm路径到to路径要的查找过程</li>
+<li><code>sep</code>：在win系统下得到’\’分隔符，在其它系统下面得到’/‘分隔符</li>
+<li><code>posix</code>:所有的路径方法的一个集合</li>
+</ul>
+<hr>
+<h2 id="url"><a href="#url" class="headerlink" title="url"></a>url</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">┌─────────────────────────────────────────────────────────────────────────────┐</div><div class="line">│                                    href                                     │</div><div class="line">├──────────┬┬───────────┬─────────────────┬───────────────────────────┬───────┤</div><div class="line">│ protocol ││   auth    │      host       │           path            │ hash  │</div><div class="line">│ 协议     ││    用户    ├──────────┬──────┼──────────┬────────────────┤       │</div><div class="line">│          ││    密码    │ hostname │ port │ pathname │     search     │       │</div><div class="line">│          ││           │  服务器   │ 端口号│ 请求的地址├─┬──────────────┤       │</div><div class="line">│          ││           │          │      │          │ │    query     │       │</div><div class="line">&quot;  http:   // user:pass @ host.com : 8080   /p/a/t/h  ?  query=string   #hash &quot;</div><div class="line">│          ││           │          │      │          │ │    参数      │ 哈希值  │</div><div class="line">└──────────┴┴───────────┴──────────┴──────┴──────────┴─┴──────────────┴───────┘</div><div class="line">(all spaces in the &quot;&quot; line should be ignored -- they are purely for formatting)</div></pre></td></tr></table></figure>
+<ul>
+<li><code>url.parse(urlString)</code>:将一个url转成对象</li>
+<li><code>url.format</code>:将一个解析后的URL对象、转成、一个格式化的URL字符串。</li>
+</ul>
+<hr>
+<h2 id="queryString"><a href="#queryString" class="headerlink" title="queryString"></a>queryString</h2><ul>
+<li><code>querystring.parse()</code>:将一个参数字符串转为对象</li>
+<li><code>querystring.stringify()</code>:将一个对象转为字符串   </li>
+<li><code>querystring.escape(url)</code>:将url中的汉字进行转码   </li>
+<li><code>querystring.unescape(url)</code>:将url中被转码的汉字重新转为汉字          </li>
+</ul>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node/fs 模块/" class="post-nav-title-link" rel="prev" title="fs模块">
+                <i class="fa fa-chevron-left"></i> fs模块 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node/node的全局api/" class="post-nav-title-link" rel="next" title="node全局api">
+                node全局api  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#核心模块"><span class="nav-number">1.</span> <span class="nav-text">核心模块</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#nodejs与commonjs之间的关系"><span class="nav-number">1.1.</span> <span class="nav-text">nodejs与commonjs之间的关系</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#commonjs规范的意义"><span class="nav-number">1.2.</span> <span class="nav-text">commonjs规范的意义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#什么叫核心模块："><span class="nav-number">1.3.</span> <span class="nav-text">什么叫核心模块：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#path"><span class="nav-number">1.4.</span> <span class="nav-text">path</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#url"><span class="nav-number">1.5.</span> <span class="nav-text">url</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#queryString"><span class="nav-number">1.6.</span> <span class="nav-text">queryString</span></a></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="全局对象和全局变量
+Node提供了几个全局对象，他们是所有模块都可以调用的。
+
+globall:表示Node所在的全局环境，类似于window对象，但又不尽相同，比如var x =1在浏览器中等同于window.x=1,在node中的模块文件中声明var x = 1，该变量不是global对象的属性,global.x等于undefined，因为这是该模块全局变量私有的，其他模块无法获取。
+
+
+gl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="node全局api">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node/node的全局api/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="全局对象和全局变量
+Node提供了几个全局对象，他们是所有模块都可以调用的。
+
+globall:表示Node所在的全局环境，类似于window对象，但又不尽相同，比如var x =1在浏览器中等同于window.x=1,在node中的模块文件中声明var x = 1，该变量不是global对象的属性,global.x等于undefined，因为这是该模块全局变量私有的，其他模块无法获取。
+
+
+gl">
+<meta property="og:updated_time" content="2016-11-16T06:56:30.497Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="node全局api">
+<meta name="twitter:description" content="全局对象和全局变量
+Node提供了几个全局对象，他们是所有模块都可以调用的。
+
+globall:表示Node所在的全局环境，类似于window对象，但又不尽相同，比如var x =1在浏览器中等同于window.x=1,在node中的模块文件中声明var x = 1，该变量不是global对象的属性,global.x等于undefined，因为这是该模块全局变量私有的，其他模块无法获取。
+
+
+gl">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> node全局api | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                node全局api
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="全局对象和全局变量"><a href="#全局对象和全局变量" class="headerlink" title="全局对象和全局变量"></a>全局对象和全局变量</h1><hr>
+<p><strong>Node提供了几个全局对象，他们是所有模块都可以调用的。</strong></p>
+<ol>
+<li><p><code>globall</code>:表示Node所在的全局环境，类似于window对象，但又不尽相同，比如<code>var x =1</code>在浏览器中等同于<code>window.x=1</code>,在node中的模块文件中声明<code>var x = 1</code>，该变量不是<code>global</code>对象的属性,<code>global.x</code>等于<code>undefined</code>，因为这是该模块全局变量私有的，其他模块无法获取。</p>
+<blockquote>
+<ul>
+<li><p><code>global.__filename</code>:当前脚本执行所在的全路径(物理路径+文件名)</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(__filename);</div><div class="line"><span class="comment">//D:\桌面文件\node\01.__filename.js</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>global.__dirname</code>:得到当前文件所在的物理路径</p>
+  <figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(__dirname);</div><div class="line"><span class="comment">//D:\桌面文件\node</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>global.setTimeout</code>/<code>global.clearTimeout</code>:设置定时器清空定时器</p>
+</li>
+<li><p><code>global.setInterval</code>/<code>global.clearInterval</code>：设置定时器清除定时器</p>
+</li>
+<li><p><code>global.setImmediate/clearImmediate</code>：设置定时器清除定时器</p>
+</li>
+</ul>
+<hr>
+<p><strong>执行顺序测试</strong></p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"></div><div class="line">setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="string">"setImmediate1"</span>);</div><div class="line">   &#125;);</div><div class="line">    process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">       <span class="built_in">console</span>.log(<span class="string">"nextTick1"</span>);</div><div class="line">     &#125;);</div><div class="line">     setImmediate(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">         <span class="built_in">console</span>.log(<span class="string">"setImmediate2"</span>);</div><div class="line">     &#125;);</div><div class="line">     process.nextTick(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">         <span class="built_in">console</span>.log(<span class="string">"nextTick2"</span>);</div><div class="line">     &#125;);</div><div class="line"></div><div class="line"><span class="keyword">var</span> time=setInterval(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'interval'</span>)</div><div class="line">  clearInterval(time)</div><div class="line">&#125;);</div><div class="line">setTimeout(<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</div><div class="line">  <span class="built_in">console</span>.log(<span class="string">'settimeout'</span>)&#125;)</div><div class="line"><span class="comment">/*nextTick1</span></div><div class="line">  nextTick2</div><div class="line">  interval</div><div class="line">  settimeout</div><div class="line">  setImmediate1</div><div class="line">  setImmediate2*/</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<hr>
+<ol>
+<li><p><code>process</code>:该对象表示Node所处的当前进程，允许开发者与该模快互动。</p>
+<blockquote>
+<ul>
+<li><code>process.nextTick(callback)</code>：功能是为事件循环设置一项任务,，Node.js 会在<br>下次事件循环调响应时调用  callback 。</li>
+<li><p><code>process.abort</code>:立即结束程序运行</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span>(<span class="literal">true</span>)process.abort();</div><div class="line"><span class="built_in">console</span>.log(<span class="string">"我输出了"</span>);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>process.arch</code>:得到当前系统运行的环境</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(process.arch);</div><div class="line"><span class="comment">//x64</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>process.argv</code>:是命令行参数数组， 第一个元素是 node， 第二个元素是脚本文件名，<br>从第三个元素开始每个元素是一个运行参数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(process.argv);</div><div class="line"><span class="comment">//[ 'C:\\Program Files\\nodejs\\node.exe','D:\\桌面文件\\node\\09.process.argv.js' ]</span></div><div class="line"><span class="comment">//  D:\桌面文件\node&gt; node .\09.process.argv.js a b</span></div><div class="line">        <span class="string">'C:\\Program Files\\nodejs\\node.exe'</span>,</div><div class="line">        <span class="string">'D:\\桌面文件\\node\\09.process.argv.js'</span>,</div><div class="line">        <span class="string">'a'</span>,</div><div class="line">        <span class="string">'b'</span> ]</div><div class="line"><span class="string">``</span><span class="string">`        </span></div><div class="line">&gt; * `process.env<span class="string">`:得到当前操作系统中环境变量</span></div><div class="line">`<span class="string">``</span>javaScript</div><div class="line"><span class="built_in">console</span>.log(process.env);</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p><code>process.stdout.write</code>:输出字符串并且不换行输出<code>console.log</code>就是借用这个方法实现的,+<code>\n</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">process.stdout.write(<span class="string">'我'</span>);</div><div class="line">process.stdout.write(<span class="string">'是'</span>);</div><div class="line">process.stdout.write(<span class="string">'谁'</span>);</div><div class="line"><span class="comment">//输出 *我是谁*</span></div></pre></td></tr></table></figure>
+</li>
+<li><p><code>process.stdin</code>:是标准输出流， 通常我们使用的  console.log() 向标准输出打印<br>字符，而  process.stdout.write() 函数提供了更底层的接口。初始时它是被暂停的，要想从标准输入读取数据，你必须恢复流，并手动编写流的事件响应函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">process.stdin.resume();</div><div class="line">process.stdin.on(<span class="string">'data'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data</span>) </span>&#123;</div><div class="line">process.stdout.write(<span class="string">'read from console: '</span> + data.toString());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+</li>
+<li><p><code>process.stdin.on</code>:当输入内容敲击回车的时候会触发这个事件</p>
+</li>
+<li><code>process.stdin.read</code>:得到输入回车前输入的内容，toString（）以后才能转化字符串</li>
+</ul>
+</blockquote>
+</li>
+<li><code>console</code>:指向Node内置的console模块，提供命令行环境中的标准输入,输出功能。</li>
+</ol>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node/" rel="tag">#node</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node/node核心模块/" class="post-nav-title-link" rel="prev" title="node核心模块">
+                <i class="fa fa-chevron-left"></i> node核心模块 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node/node的安装于使用/" class="post-nav-title-link" rel="next" title="node的安装">
+                node的安装  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#全局对象和全局变量"><span class="nav-number">1.</span> <span class="nav-text">全局对象和全局变量</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>
