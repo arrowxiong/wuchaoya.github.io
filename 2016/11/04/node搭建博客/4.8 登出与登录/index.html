@@ -1,0 +1,682 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node搭建博客," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="4.8.1 登出现在我们来完成登出的功能。修改 routes/signout.js 如下：
+routes/signout.js
+123456789101112131415var express = require(&amp;apos;express&amp;apos;);var router = express.Router();var checkLogin = require(&amp;apos;../middlewa">
+<meta property="og:type" content="article">
+<meta property="og:title" content="登出与登录">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node搭建博客/4.8 登出与登录/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="4.8.1 登出现在我们来完成登出的功能。修改 routes/signout.js 如下：
+routes/signout.js
+123456789101112131415var express = require(&amp;apos;express&amp;apos;);var router = express.Router();var checkLogin = require(&amp;apos;../middlewa">
+<meta property="og:image" content="http://yoursite.com/./img/4.8.1.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.8.2.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.8.3.png">
+<meta property="og:updated_time" content="2016-11-17T05:36:16.836Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="登出与登录">
+<meta name="twitter:description" content="4.8.1 登出现在我们来完成登出的功能。修改 routes/signout.js 如下：
+routes/signout.js
+123456789101112131415var express = require(&amp;apos;express&amp;apos;);var router = express.Router();var checkLogin = require(&amp;apos;../middlewa">
+<meta name="twitter:image" content="http://yoursite.com/./img/4.8.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> 登出与登录 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                登出与登录
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="4-8-1-登出"><a href="#4-8-1-登出" class="headerlink" title="4.8.1 登出"></a>4.8.1 登出</h2><p>现在我们来完成登出的功能。修改 routes/signout.js 如下：</p>
+<p><strong>routes/signout.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var router = express.Router();</div><div class="line"></div><div class="line">var checkLogin = require(&apos;../middlewares/check&apos;).checkLogin;</div><div class="line"></div><div class="line">// GET /signout 登出</div><div class="line">router.get(&apos;/&apos;, checkLogin, function(req, res, next) &#123;</div><div class="line">  // 清空 session 中用户信息</div><div class="line">  req.session.user = null;</div><div class="line">  req.flash(&apos;success&apos;, &apos;登出成功&apos;);</div><div class="line">  // 登出成功后跳转到主页</div><div class="line">  res.redirect(&apos;/posts&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">module.exports = router;</div></pre></td></tr></table></figure>
+<p>此时点击右上角的 <code>登出</code>，成功后如下图所示：</p>
+<p><img src="./img/4.8.1.png" alt=""></p>
+<h2 id="4-8-2-登录页"><a href="#4-8-2-登录页" class="headerlink" title="4.8.2 登录页"></a>4.8.2 登录页</h2><p>现在我们来完成登录页。修改 routes/signin.js 相应代码如下：</p>
+<p><strong>routes/signin.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">router.get(&apos;/&apos;, checkNotLogin, function(req, res, next) &#123;</div><div class="line">  res.render(&apos;signin&apos;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>新建 views/signin.ejs，添加如下代码：</p>
+<p><strong>views/signin.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">&lt;%- include(&apos;header&apos;) %&gt;</div><div class="line"></div><div class="line">&lt;div class=&quot;ui grid&quot;&gt;</div><div class="line">  &lt;div class=&quot;four wide column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;eight wide column&quot;&gt;</div><div class="line">    &lt;form class=&quot;ui form segment&quot; method=&quot;post&quot;&gt;</div><div class="line">      &lt;div class=&quot;field required&quot;&gt;</div><div class="line">        &lt;label&gt;用户名&lt;/label&gt;</div><div class="line">        &lt;input placeholder=&quot;用户名&quot; type=&quot;text&quot; name=&quot;name&quot;&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;div class=&quot;field required&quot;&gt;</div><div class="line">        &lt;label&gt;密码&lt;/label&gt;</div><div class="line">        &lt;input placeholder=&quot;密码&quot; type=&quot;password&quot; name=&quot;password&quot;&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">      &lt;input type=&quot;submit&quot; class=&quot;ui button fluid&quot; value=&quot;登录&quot;&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/form&gt;</div><div class="line">&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;%- include(&apos;footer&apos;) %&gt;</div></pre></td></tr></table></figure>
+<p>现在访问 <code>localhost:3000/signin</code> 试试吧。</p>
+<h2 id="4-8-3-登录"><a href="#4-8-3-登录" class="headerlink" title="4.8.3 登录"></a>4.8.3 登录</h2><p>现在我们来完成登录的功能。修改 models/users.js 添加 <code>getUserByName</code> 方法用于通过用户名获取用户信息：</p>
+<p><strong>models/users.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">var User = require(&apos;../lib/mongo&apos;).User;</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  // 注册一个用户</div><div class="line">  create: function create(user) &#123;</div><div class="line">    return User.create(user).exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // 通过用户名获取用户信息</div><div class="line">  getUserByName: function getUserByName(name) &#123;</div><div class="line">    return User</div><div class="line">      .findOne(&#123; name: name &#125;)</div><div class="line">      .addCreatedAt()</div><div class="line">      .exec();</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>这里我们使用了 <code>addCreatedAt</code> 自定义插件（通过 _id 生成时间戳），修改 lib/mongo.js，添加如下代码：</p>
+<p><strong>lib/mongo.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">var moment = require(&apos;moment&apos;);</div><div class="line">var objectIdToTimestamp = require(&apos;objectid-to-timestamp&apos;);</div><div class="line"></div><div class="line">// 根据 id 生成创建时间 created_at</div><div class="line">mongolass.plugin(&apos;addCreatedAt&apos;, &#123;</div><div class="line">  afterFind: function (results) &#123;</div><div class="line">    results.forEach(function (item) &#123;</div><div class="line">      item.created_at = moment(objectIdToTimestamp(item._id)).format(&apos;YYYY-MM-DD HH:mm&apos;);</div><div class="line">    &#125;);</div><div class="line">    return results;</div><div class="line">  &#125;,</div><div class="line">  afterFindOne: function (result) &#123;</div><div class="line">    if (result) &#123;</div><div class="line">      result.created_at = moment(objectIdToTimestamp(result._id)).format(&apos;YYYY-MM-DD HH:mm&apos;);</div><div class="line">    &#125;</div><div class="line">    return result;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<blockquote>
+<p>小提示：24 位长的 ObjectId 前 4 个字节是精确到秒的时间戳，所以我们没有额外的存创建时间（如: createdAt）的字段。ObjectId 生成规则：</p>
+</blockquote>
+<p><img src="./img/4.8.2.png" alt=""></p>
+<p>修改 routes/signin.js 如下：</p>
+<p><strong>routes/signin.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">var sha1 = require(&apos;sha1&apos;);</div><div class="line">var express = require(&apos;express&apos;);</div><div class="line">var router = express.Router();</div><div class="line"></div><div class="line">var UserModel = require(&apos;../models/users&apos;);</div><div class="line">var checkNotLogin = require(&apos;../middlewares/check&apos;).checkNotLogin;</div><div class="line"></div><div class="line">// GET /signin 登录页</div><div class="line">router.get(&apos;/&apos;, checkNotLogin, function(req, res, next) &#123;</div><div class="line">  res.render(&apos;signin&apos;);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// POST /signin 用户登录</div><div class="line">router.post(&apos;/&apos;, checkNotLogin, function(req, res, next) &#123;</div><div class="line">  var name = req.fields.name;</div><div class="line">  var password = req.fields.password;</div><div class="line"></div><div class="line">  UserModel.getUserByName(name)</div><div class="line">    .then(function (user) &#123;</div><div class="line">      if (!user) &#123;</div><div class="line">        req.flash(&apos;error&apos;, &apos;用户不存在&apos;);</div><div class="line">        return res.redirect(&apos;back&apos;);</div><div class="line">      &#125;</div><div class="line">      // 检查密码是否匹配</div><div class="line">      if (sha1(password) !== user.password) &#123;</div><div class="line">        req.flash(&apos;error&apos;, &apos;用户名或密码错误&apos;);</div><div class="line">        return res.redirect(&apos;back&apos;);</div><div class="line">      &#125;</div><div class="line">      req.flash(&apos;success&apos;, &apos;登录成功&apos;);</div><div class="line">      // 用户信息写入 session</div><div class="line">      delete user.password;</div><div class="line">      req.session.user = user;</div><div class="line">      // 跳转到主页</div><div class="line">      res.redirect(&apos;/posts&apos;);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">module.exports = router;</div></pre></td></tr></table></figure>
+<p>现在访问 <code>localhost:3000/signin</code>，用刚才注册的账号登录，如下图所示：</p>
+<p><img src="./img/4.8.3.png" alt=""></p>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node搭建博客/" rel="tag">#node搭建博客</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.6 连接数据库/" class="post-nav-title-link" rel="prev" title="链接数据库">
+                <i class="fa fa-chevron-left"></i> 链接数据库 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/2.4 环境变量/" class="post-nav-title-link" rel="next" title="环境变量">
+                环境变量  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-1-登出"><span class="nav-number">1.</span> <span class="nav-text">4.8.1 登出</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-2-登录页"><span class="nav-number">2.</span> <span class="nav-text">4.8.2 登录页</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-8-3-登录"><span class="nav-number">3.</span> <span class="nav-text">4.8.3 登录</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

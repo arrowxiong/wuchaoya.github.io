@@ -1,0 +1,770 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node搭建博客," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="我们使用 jQuery + Semantic-UI 实现前端页面的设计，最终效果图如下:
+注册页
+
+登录页
+
+未登录时的主页（或用户页）
+
+登录后的主页（或用户页）
+
+发表文章页
+
+编辑文章页
+
+未登录时的文章页
+
+登录后的文章页
+
+通知
+
+4.5.1 组件前面提到过，我们可以将模板拆分成一些组件，然后使用 ejs 的 include 方法将组件组合起来进行渲染。我们将页面切分成以下组件：
+主页">
+<meta property="og:type" content="article">
+<meta property="og:title" content="页面设计">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node搭建博客/4.5 页面设计/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="我们使用 jQuery + Semantic-UI 实现前端页面的设计，最终效果图如下:
+注册页
+
+登录页
+
+未登录时的主页（或用户页）
+
+登录后的主页（或用户页）
+
+发表文章页
+
+编辑文章页
+
+未登录时的文章页
+
+登录后的文章页
+
+通知
+
+4.5.1 组件前面提到过，我们可以将模板拆分成一些组件，然后使用 ejs 的 include 方法将组件组合起来进行渲染。我们将页面切分成以下组件：
+主页">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.1.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.2.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.3.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.4.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.5.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.6.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.7.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.8.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.9.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.10.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.11.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.12.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.5.13.png">
+<meta property="og:updated_time" content="2016-11-17T05:36:02.816Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="页面设计">
+<meta name="twitter:description" content="我们使用 jQuery + Semantic-UI 实现前端页面的设计，最终效果图如下:
+注册页
+
+登录页
+
+未登录时的主页（或用户页）
+
+登录后的主页（或用户页）
+
+发表文章页
+
+编辑文章页
+
+未登录时的文章页
+
+登录后的文章页
+
+通知
+
+4.5.1 组件前面提到过，我们可以将模板拆分成一些组件，然后使用 ejs 的 include 方法将组件组合起来进行渲染。我们将页面切分成以下组件：
+主页">
+<meta name="twitter:image" content="http://yoursite.com/./img/4.5.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> 页面设计 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                页面设计
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们使用 jQuery + Semantic-UI 实现前端页面的设计，最终效果图如下:</p>
+<p><strong>注册页</strong></p>
+<p><img src="./img/4.5.1.png" alt=""></p>
+<p><strong>登录页</strong></p>
+<p><img src="./img/4.5.2.png" alt=""></p>
+<p><strong>未登录时的主页（或用户页）</strong></p>
+<p><img src="./img/4.5.3.png" alt=""></p>
+<p><strong>登录后的主页（或用户页）</strong></p>
+<p><img src="./img/4.5.4.png" alt=""></p>
+<p><strong>发表文章页</strong></p>
+<p><img src="./img/4.5.5.png" alt=""></p>
+<p><strong>编辑文章页</strong></p>
+<p><img src="./img/4.5.6.png" alt=""></p>
+<p><strong>未登录时的文章页</strong></p>
+<p><img src="./img/4.5.7.png" alt=""></p>
+<p><strong>登录后的文章页</strong></p>
+<p><img src="./img/4.5.8.png" alt=""></p>
+<p><strong>通知</strong></p>
+<p><img src="./img/4.5.9.png" alt=""><br><img src="./img/4.5.10.png" alt=""><br><img src="./img/4.5.11.png" alt=""></p>
+<h2 id="4-5-1-组件"><a href="#4-5-1-组件" class="headerlink" title="4.5.1 组件"></a>4.5.1 组件</h2><p>前面提到过，我们可以将模板拆分成一些组件，然后使用 ejs 的 include 方法将组件组合起来进行渲染。我们将页面切分成以下组件：</p>
+<p><strong>主页</strong></p>
+<p><img src="./img/4.5.12.png" alt=""></p>
+<p><strong>文章页</strong></p>
+<p><img src="./img/4.5.13.png" alt=""></p>
+<p>根据上面的组件切分图，我们创建以下样式及模板文件：</p>
+<p><strong>public/css/style.css</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div></pre></td><td class="code"><pre><div class="line">/* ---------- 全局样式 ---------- */</div><div class="line"></div><div class="line">body &#123;</div><div class="line">  width: 1100px;</div><div class="line">  height: 100%;</div><div class="line">  margin: 0 auto;</div><div class="line">  padding-top: 40px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">a:hover &#123;</div><div class="line">  border-bottom: 3px solid #4fc08d;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.button &#123;</div><div class="line">  background-color: #4fc08d !important;</div><div class="line">  color: #fff !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.avatar &#123;</div><div class="line">  border-radius: 3px;</div><div class="line">  width: 48px;</div><div class="line">  height: 48px;</div><div class="line">  float: right;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ---------- nav ---------- */</div><div class="line"></div><div class="line">.nav &#123;</div><div class="line">  margin-bottom: 20px;</div><div class="line">  color: #999;</div><div class="line">  text-align: center;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.nav h1 &#123;</div><div class="line">  color: #4fc08d;</div><div class="line">  display: inline-block;</div><div class="line">  margin: 10px 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ---------- nav-setting ---------- */</div><div class="line"></div><div class="line">.nav-setting &#123;</div><div class="line">  position: fixed;</div><div class="line">  right: 30px;</div><div class="line">  top: 35px;</div><div class="line">  z-index: 999;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.nav-setting .ui.dropdown.button &#123;</div><div class="line">  padding: 10px 10px 0 10px;</div><div class="line">  background-color: #fff !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.nav-setting .icon.bars &#123;</div><div class="line">  color: #000;</div><div class="line">  font-size: 18px;</div><div class="line">&#125;</div><div class="line"></div><div class="line">/* ---------- post-content ---------- */</div><div class="line"></div><div class="line">.post-content h3 a &#123;</div><div class="line">  color: #4fc08d !important;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.post-content .tag &#123;</div><div class="line">  font-size: 13px;</div><div class="line">  margin-right: 5px;</div><div class="line">  color: #999;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.post-content .tag.right &#123;</div><div class="line">  float: right;</div><div class="line">  margin-right: 0;</div><div class="line">&#125;</div><div class="line"></div><div class="line">.post-content .tag.right a &#123;</div><div class="line">  color: #999;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p><strong>views/header.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">&lt;!DOCTYPE html&gt;</div><div class="line">&lt;html&gt;</div><div class="line">  &lt;head&gt;</div><div class="line">    &lt;meta charset=&quot;utf-8&quot;&gt;</div><div class="line">    &lt;title&gt;&lt;%= blog.title %&gt;&lt;/title&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.css&quot;&gt;</div><div class="line">    &lt;link rel=&quot;stylesheet&quot; href=&quot;/css/style.css&quot;&gt;</div><div class="line">    &lt;script src=&quot;//cdn.bootcss.com/jquery/1.11.3/jquery.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">    &lt;script src=&quot;//cdn.bootcss.com/semantic-ui/2.1.8/semantic.min.js&quot;&gt;&lt;/script&gt;</div><div class="line">  &lt;/head&gt;</div><div class="line">  &lt;body&gt;</div><div class="line">  &lt;%- include(&apos;components/nav&apos;) %&gt;</div><div class="line">  &lt;%- include(&apos;components/nav-setting&apos;) %&gt;</div><div class="line">  &lt;%- include(&apos;components/notification&apos;) %&gt;</div></pre></td></tr></table></figure>
+<p><strong>views/footer.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">  &lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">    // 点击按钮弹出下拉框</div><div class="line">    $(&apos;.ui.dropdown&apos;).dropdown();</div><div class="line">    // 鼠标悬浮在头像上，弹出气泡提示框</div><div class="line">    $(&apos;.post-content .avatar&apos;).popup(&#123;</div><div class="line">      inline: true,</div><div class="line">      position: &apos;bottom right&apos;,</div><div class="line">      lastResort: &apos;bottom right&apos;,</div><div class="line">    &#125;);</div><div class="line">  &lt;/script&gt;</div><div class="line">  &lt;/body&gt;</div><div class="line">&lt;/html&gt;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：上面 <code>&lt;script&gt;&lt;/script&gt;</code> 是 semantic-ui 操控页面控件的代码，一定要放到 footer.ejs 的 <code>&lt;/body&gt;</code> 的前面，因为只有页面加载完后才能通过 JQuery 获取 DOM 元素。</p>
+</blockquote>
+<p>在 views 目录下新建 components 目录用来存放组件，在该目录下创建以下文件：</p>
+<p><strong>views/components/nav.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;nav&quot;&gt;</div><div class="line">  &lt;div class=&quot;ui grid&quot;&gt;</div><div class="line">    &lt;div class=&quot;four wide column&quot;&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">    &lt;div class=&quot;eight wide column&quot;&gt;</div><div class="line">      &lt;a href=&quot;/posts&quot;&gt;&lt;h1&gt;&lt;%= blog.title %&gt;&lt;/h1&gt;&lt;/a&gt;</div><div class="line">      &lt;p&gt;&lt;%= blog.description %&gt;&lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><strong>views/components/nav-setting.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;nav-setting&quot;&gt;</div><div class="line">  &lt;div class=&quot;ui buttons&quot;&gt;</div><div class="line">    &lt;div class=&quot;ui floating dropdown button&quot;&gt;</div><div class="line">      &lt;i class=&quot;icon bars&quot;&gt;&lt;/i&gt;</div><div class="line">      &lt;div class=&quot;menu&quot;&gt;</div><div class="line">        &lt;% if (user) &#123; %&gt;</div><div class="line">          &lt;a class=&quot;item&quot; href=&quot;/posts?author=&lt;%= user._id %&gt;&quot;&gt;个人主页&lt;/a&gt;</div><div class="line">          &lt;div class=&quot;divider&quot;&gt;&lt;/div&gt;</div><div class="line">          &lt;a class=&quot;item&quot; href=&quot;/posts/create&quot;&gt;发表文章&lt;/a&gt;</div><div class="line">          &lt;a class=&quot;item&quot; href=&quot;/signout&quot;&gt;登出&lt;/a&gt;</div><div class="line">        &lt;% &#125; else &#123; %&gt;</div><div class="line">          &lt;a class=&quot;item&quot; href=&quot;/signin&quot;&gt;登录&lt;/a&gt;</div><div class="line">          &lt;a class=&quot;item&quot; href=&quot;/signup&quot;&gt;注册&lt;/a&gt;</div><div class="line">        &lt;% &#125; %&gt;</div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p><strong>views/components/notification.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;ui grid&quot;&gt;</div><div class="line">  &lt;div class=&quot;four wide column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;eight wide column&quot;&gt;</div><div class="line"></div><div class="line">  &lt;% if (success) &#123; %&gt;</div><div class="line">    &lt;div class=&quot;ui success message&quot;&gt;</div><div class="line">      &lt;p&gt;&lt;%= success %&gt;&lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;% &#125; %&gt;</div><div class="line"></div><div class="line">  &lt;% if (error) &#123; %&gt;</div><div class="line">    &lt;div class=&quot;ui error message&quot;&gt;</div><div class="line">      &lt;p&gt;&lt;%= error %&gt;&lt;/p&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;% &#125; %&gt;</div><div class="line"></div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<h2 id="4-5-2-app-locals-和-res-locals"><a href="#4-5-2-app-locals-和-res-locals" class="headerlink" title="4.5.2 app.locals 和 res.locals"></a>4.5.2 app.locals 和 res.locals</h2><p>上面的模板中我们用到了 blog、user、success、error 变量，我们将 blog 变量挂载到 <code>app.locals</code> 下，将 user、success、error 挂载到 <code>res.locals</code> 下。为什么要这么做呢？<code>app.locals</code> 和 <code>res.locals</code> 是什么？它们有什么区别？</p>
+<p>express 中有两个对象可用于模板的渲染：<code>app.locals</code> 和 <code>res.locals</code>。我们从 express 源码一探究竟：</p>
+<p><strong>express/lib/application.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line">app.render = function render(name, options, callback) &#123;</div><div class="line">  ...</div><div class="line">  var opts = options;</div><div class="line">  var renderOptions = &#123;&#125;;</div><div class="line">  ...</div><div class="line">  // merge app.locals</div><div class="line">  merge(renderOptions, this.locals);</div><div class="line"></div><div class="line">  // merge options._locals</div><div class="line">  if (opts._locals) &#123;</div><div class="line">    merge(renderOptions, opts._locals);</div><div class="line">  &#125;</div><div class="line"></div><div class="line">  // merge options</div><div class="line">  merge(renderOptions, opts);</div><div class="line">  ...</div><div class="line">  tryRender(view, renderOptions, done);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p><strong>express/lib/response.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">res.render = function render(view, options, callback) &#123;</div><div class="line">  var app = this.req.app;</div><div class="line">  var opts = options || &#123;&#125;;</div><div class="line">  ...</div><div class="line">  // merge res.locals</div><div class="line">  opts._locals = self.locals;</div><div class="line">  ...</div><div class="line">  // render</div><div class="line">  app.render(view, opts, done);</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<p>可以看出：在调用 <code>res.render</code> 的时候，express 合并（merge）了 3 处的结果后传入要渲染的模板，优先级：<code>res.render</code> 传入的对象&gt; <code>res.locals</code> 对象 &gt; <code>app.locals</code> 对象，所以 <code>app.locals</code> 和 <code>res.locals</code> 几乎没有区别，都用来渲染模板，使用上的区别在于：<code>app.locals</code> 上通常挂载常量信息（如博客名、描述、作者信息），<code>res.locals</code> 上通常挂载变量信息，即每次请求可能的值都不一样（如请求者信息，<code>res.locals.user = req.session.user</code>）。</p>
+<p>修改 index.js，在 <code>routes(app);</code> 上一行添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 设置模板全局常量</div><div class="line">app.locals.blog = &#123;</div><div class="line">  title: pkg.name,</div><div class="line">  description: pkg.description</div><div class="line">&#125;;</div><div class="line"></div><div class="line">// 添加模板必需的三个变量</div><div class="line">app.use(function (req, res, next) &#123;</div><div class="line">  res.locals.user = req.session.user;</div><div class="line">  res.locals.success = req.flash(&apos;success&apos;).toString();</div><div class="line">  res.locals.error = req.flash(&apos;error&apos;).toString();</div><div class="line">  next();</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>这样在调用 <code>res.render</code> 的时候就不用传入这四个变量了，express 为我们自动 merge 并传入了模板，所以我们可以在模板中直接使用这四个变量。</p>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node搭建博客/" rel="tag">#node搭建博客</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.4 功能设计/" class="post-nav-title-link" rel="prev" title="功能设计">
+                <i class="fa fa-chevron-left"></i> 功能设计 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.2 准备工作/" class="post-nav-title-link" rel="next" title="准备工作">
+                准备工作  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-1-组件"><span class="nav-number">1.</span> <span class="nav-text">4.5.1 组件</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-5-2-app-locals-和-res-locals"><span class="nav-number">2.</span> <span class="nav-text">4.5.2 app.locals 和 res.locals</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

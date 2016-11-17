@@ -1,0 +1,702 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node搭建博客," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="我们使用 Mongolass 这个模块操作 mongodb 进行增删改查。在 myblog 下新建 lib 目录，在该目录下新建 mongo.js，添加如下代码：
+lib/mongo.js
+1234var config = require(&amp;apos;config-lite&amp;apos;);var Mongolass = require(&amp;apos;mongolass&amp;apos;);var mong">
+<meta property="og:type" content="article">
+<meta property="og:title" content="链接数据库">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node搭建博客/4.6 连接数据库/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="我们使用 Mongolass 这个模块操作 mongodb 进行增删改查。在 myblog 下新建 lib 目录，在该目录下新建 mongo.js，添加如下代码：
+lib/mongo.js
+1234var config = require(&amp;apos;config-lite&amp;apos;);var Mongolass = require(&amp;apos;mongolass&amp;apos;);var mong">
+<meta property="og:updated_time" content="2016-11-17T05:36:07.271Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="链接数据库">
+<meta name="twitter:description" content="我们使用 Mongolass 这个模块操作 mongodb 进行增删改查。在 myblog 下新建 lib 目录，在该目录下新建 mongo.js，添加如下代码：
+lib/mongo.js
+1234var config = require(&amp;apos;config-lite&amp;apos;);var Mongolass = require(&amp;apos;mongolass&amp;apos;);var mong">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> 链接数据库 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                链接数据库
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>我们使用 <a href="https://github.com/mongolass/mongolass" target="_blank" rel="external">Mongolass</a> 这个模块操作 mongodb 进行增删改查。在 myblog 下新建 lib 目录，在该目录下新建 mongo.js，添加如下代码：</p>
+<p><strong>lib/mongo.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var config = require(&apos;config-lite&apos;);</div><div class="line">var Mongolass = require(&apos;mongolass&apos;);</div><div class="line">var mongolass = new Mongolass();</div><div class="line">mongolass.connect(config.mongodb);</div></pre></td></tr></table></figure>
+<h2 id="4-6-1-为什么使用-Mongolass"><a href="#4-6-1-为什么使用-Mongolass" class="headerlink" title="4.6.1 为什么使用 Mongolass"></a>4.6.1 为什么使用 Mongolass</h2><p>早期我使用官方的 <a href="https://www.npmjs.com/package/mongodb" target="_blank" rel="external">mongodb</a>（也叫 node-mongodb-native）库，后来也陆续尝试使用了许多其他 mongodb 的驱动库，<a href="https://www.npmjs.com/package/mongoose" target="_blank" rel="external">Mongoose</a> 是比较优秀的一个，使用 Mongoose 的时间也比较长。比较这两者，各有优缺点。</p>
+<h4 id="node-mongodb-native"><a href="#node-mongodb-native" class="headerlink" title="node-mongodb-native:"></a>node-mongodb-native:</h4><p><strong>优点：</strong></p>
+<ol>
+<li>简单。参照文档即可上手，没有 Mongoose 的 Schema 那些对新手不友好的东西。</li>
+<li>强大。毕竟是官方库，包含了所有且最新的 api，其他大部分的库都是在这个库的基础上改造的，包括 Mongoose。</li>
+<li>文档健全。</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>起初只支持 callback，会写出以下这种代码：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">mongodb.open(function (err, db) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    return callback(err);</div><div class="line">  &#125;</div><div class="line">  db.collection(&apos;users&apos;, function (err, collection) &#123;</div><div class="line">    if (err) &#123;</div><div class="line">      return callback(err);</div><div class="line">    &#125;</div><div class="line">    collection.find(&#123; name: &apos;xxx&apos; &#125;, function (err, users) &#123;</div><div class="line">      if (err) &#123;</div><div class="line">        return callback(err);</div><div class="line">      &#125;</div><div class="line">    &#125;)</div><div class="line">  ...</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>或者：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">MongoClient.connect(&apos;mongodb://localhost:27017&apos;, function (err, mongodb) &#123;</div><div class="line">  if (err) &#123;</div><div class="line">    return callback(err);</div><div class="line">  &#125;</div><div class="line">  mongodb.db(&apos;test&apos;).collection(&apos;users&apos;).find(&#123; name: &apos;xxx&apos; &#125;, function (err, users) &#123;</div><div class="line">    if (err) &#123;</div><div class="line">      return callback(err);</div><div class="line">    &#125;</div><div class="line">  &#125;)</div><div class="line">  ...</div></pre></td></tr></table></figure>
+<p>现在支持 Promise 了，和 co 一起使用好很多。</p>
+<ol>
+<li>不支持文档校验。Mongoose 通过 Schema 支持文档校验，虽说 mongodb 是 no schema 的，但在生产环境中使用 Schema 有两点好处。一是对文档做校验，防止非正常情况下写入错误的数据到数据库，二是可以简化一些代码，如类型为 ObjectId 的字段查询或更新时可通过对应的字符串操作，不用每次包装成 ObjectId 对象。</li>
+</ol>
+<h4 id="Mongoose"><a href="#Mongoose" class="headerlink" title="Mongoose:"></a>Mongoose:</h4><p><strong>优点：</strong></p>
+<ol>
+<li><p>封装了数据库的操作，给人的感觉是同步的，其实内部是异步的。如 mongoose 与 MongoDB 建立连接：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var mongoose = require(&apos;mongoose&apos;);</div><div class="line">mongoose.connect(&apos;mongodb://localhost/test&apos;);</div><div class="line">var BlogModel = mongoose.model(&apos;Blog&apos;, &#123; title: String, content: String &#125;);</div><div class="line">BlogModel.find()</div></pre></td></tr></table></figure>
+</li>
+<li><p>支持 Promise。这个也无需多说，Promise 是未来趋势，可结合 co 使用，也可结合 async/await 使用。</p>
+</li>
+<li>支持文档校验。如上所述。</li>
+</ol>
+<p><strong>缺点（个人观点）：</strong></p>
+<ol>
+<li>功能多，复杂。Mongoose 很强大，有很多功能是比较鸡肋甚至可以去掉的，如果使用反而会影响代码的可读性。比如虚拟属性以及 schema 上定义 statics 方法和 instance 方法，可以把这些定义成外部方法，用到的时候调用即可。</li>
+<li>较弱的 plugin 系统。如：<code>schema.pre(&#39;save&#39;, function(next) {})</code> 和 <code>schema.post(&#39;find&#39;, function(next) {})</code>，只支持异步 <code>next()</code>，灵活性大打折扣。</li>
+<li>其他：对新手来说难以理解的 Schema、Model、Entry 之间的关系；容易混淆的 toJSON 和 toObject，以及有带有虚拟属性的情况；用和不用 exec 的情况以及直接用 then 的情况；返回的结果是 Mongoose 包装后的对象，在此对象上修改结果却无效等等。</li>
+</ol>
+<h4 id="Mongolass"><a href="#Mongolass" class="headerlink" title="Mongolass"></a>Mongolass</h4><p>Mongolass 保持了与 mongodb 一样的 api，又借鉴了许多 Mongoose 的优点，同时又保持了精简。</p>
+<p><strong>优点：</strong></p>
+<ol>
+<li>支持 Promise。</li>
+<li>简单。参考 Mongolass 的 readme 即可上手，比 Mongoose 精简的多，本身代码也不多。</li>
+<li>可选的 Schema。Mongolass 中的 Schema （基于 <a href="https://www.npmjs.com/package/another-json-schema" target="_blank" rel="external">another-json-schema</a>）是可选的，并且只用来做文档校验。如果定义了 schema 并关联到某个 model，则插入、更新和覆盖等操作都会校验文档是否满足 schema，同时 schema 也会尝试格式化该字段，类似于 Mongoose，如定义了一个字段为 ObjectId 类型，也可以用 ObjectId 的字符串无缝使用一样。如果没有 schema，则用法跟原生 mongodb 库一样。</li>
+<li>简单却强大的插件系统。可以定义全局插件（对所有 model 生效），也可以定义某个 model 上的插件（只对该 model 生效）。Mongolass 插件的设计思路借鉴了中间件的概念（类似于 Koa），通过定义 <code>beforeXXX</code> 和 <code>afterXXX</code> （XXX为操作符首字母大写，如：<code>afterFind</code>）函数实现，函数返回 yieldable 的对象即可，所以每个插件内可以做一些其他的 IO 操作。不同的插件顺序会有不同的结果，而且每个插件的输入输出都是 plain object，而非 Mongolass 包装后的对象，没有虚拟属性，无需调用 toJSON 或 toObject。Mongolass 中的 <code>.populate()</code>就是一个内置的插件。</li>
+<li>详细的错误信息。用过 Mongoose 的人一定遇到过这样的错：<br><code>CastError: Cast to ObjectId failed for value &quot;xxx&quot; at path &quot;_id&quot;</code><br>只知道一个期望是 ObjectId 的字段传入了非期望的值，通常很难定位出错的代码，即使定位到也得不到错误现场。得益于 <a href="https://www.npmjs.com/package/another-json-schema" target="_blank" rel="external">another-json-schema</a>，使用 Mongolass 在查询或者更新时，某个字段不匹配它定义的 schema 时（还没落到 mongodb）会给出详细的错误信息，如下所示：<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div></pre></td><td class="code"><pre><div class="line">const Mongolass = require(&apos;mongolass&apos;);</div><div class="line">const mongolass = new Mongolass(&apos;mongodb://localhost:27017/test&apos;);</div><div class="line"></div><div class="line">const User = mongolass.model(&apos;User&apos;, &#123;</div><div class="line">  name: &#123; type: &apos;string&apos; &#125;,</div><div class="line">  age: &#123; type: &apos;number&apos; &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">User</div><div class="line">  .insertOne(&#123; name: &apos;nswbmw&apos;, age: &apos;wrong age&apos; &#125;)</div><div class="line">  .exec()</div><div class="line">  .then(console.log)</div><div class="line">  .catch(function (e) &#123;</div><div class="line">    console.error(e);</div><div class="line">    console.error(e.stack);</div><div class="line">  &#125;);</div><div class="line">/*</div><div class="line">&#123; [Error: ($.age: &quot;wrong age&quot;) ✖ (type: number)]</div><div class="line">  validator: &apos;type&apos;,</div><div class="line">  actual: &apos;wrong age&apos;,</div><div class="line">  expected: &#123; type: &apos;number&apos; &#125;,</div><div class="line">  path: &apos;$.age&apos;,</div><div class="line">  schema: &apos;UserSchema&apos;,</div><div class="line">  model: &apos;User&apos;,</div><div class="line">  plugin: &apos;MongolassSchema&apos;,</div><div class="line">  type: &apos;beforeInsertOne&apos;,</div><div class="line">  args: [] &#125;</div><div class="line">Error</div><div class="line">    at Model.insertOne (/Users/nswbmw/Desktop/mongolass-demo/node_modules/mongolass/lib/query.js:107:16)</div><div class="line">    at Object.&lt;anonymous&gt; (/Users/nswbmw/Desktop/mongolass-demo/app.js:10:4)</div><div class="line">    at Module._compile (module.js:409:26)</div><div class="line">    at Object.Module._extensions..js (module.js:416:10)</div><div class="line">    at Module.load (module.js:343:32)</div><div class="line">    at Function.Module._load (module.js:300:12)</div><div class="line">    at Function.Module.runMain (module.js:441:10)</div><div class="line">    at startup (node.js:139:18)</div><div class="line">    at node.js:974:3</div><div class="line"> */</div></pre></td></tr></table></figure>
+</li>
+</ol>
+<p>可以看出，错误的原因是在 insertOne 一条用户数据到用户表的时候，age 期望是一个 number 类型的值，而我们传入的字符串 <code>wrong age</code>，然后从错误栈中可以快速定位到是 app.js 第 10 行代码抛出的错。</p>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>schema 功能较弱，缺少如 required、default 功能。</li>
+</ol>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node搭建博客/" rel="tag">#node搭建博客</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.3 配置文件/" class="post-nav-title-link" rel="prev" title="配置文件">
+                <i class="fa fa-chevron-left"></i> 配置文件 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.8 登出与登录/" class="post-nav-title-link" rel="next" title="登出与登录">
+                登出与登录  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-6-1-为什么使用-Mongolass"><span class="nav-number">1.</span> <span class="nav-text">4.6.1 为什么使用 Mongolass</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#node-mongodb-native"><span class="nav-number">1.0.1.</span> <span class="nav-text">node-mongodb-native:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mongoose"><span class="nav-number">1.0.2.</span> <span class="nav-text">Mongoose:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Mongolass"><span class="nav-number">1.0.3.</span> <span class="nav-text">Mongolass</span></a></li></ol></li></ol></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

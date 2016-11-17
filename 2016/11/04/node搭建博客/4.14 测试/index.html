@@ -1,0 +1,694 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node搭建博客," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="4.14.1 mocha 和 supertestmocha 和 suptertest 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：
+1npm i mocha supertest --save
+修改 pack">
+<meta property="og:type" content="article">
+<meta property="og:title" content="测试">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node搭建博客/4.14 测试/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="4.14.1 mocha 和 supertestmocha 和 suptertest 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：
+1npm i mocha supertest --save
+修改 pack">
+<meta property="og:image" content="http://yoursite.com/./img/4.14.1.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.14.2.png">
+<meta property="og:image" content="http://yoursite.com/./img/4.14.3.png">
+<meta property="og:updated_time" content="2016-11-17T05:36:45.379Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="测试">
+<meta name="twitter:description" content="4.14.1 mocha 和 supertestmocha 和 suptertest 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：
+1npm i mocha supertest --save
+修改 pack">
+<meta name="twitter:image" content="http://yoursite.com/./img/4.14.1.png">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> 测试 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                测试
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="4-14-1-mocha-和-supertest"><a href="#4-14-1-mocha-和-supertest" class="headerlink" title="4.14.1 mocha 和 supertest"></a>4.14.1 mocha 和 supertest</h2><p><a href="https://www.npmjs.com/package/mocha" target="_blank" rel="external">mocha</a> 和 <a href="https://www.npmjs.com/package/supertest" target="_blank" rel="external">suptertest</a> 是常用的测试组合，通常用来测试 restful 的 api 接口，这里我们也可以用来测试我们的博客应用。在 myblog 下新建 test 文件夹存放测试文件，以注册为例讲解 mocha 和 supertest 的用法。首先安装所需模块：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i mocha supertest --save</div></pre></td></tr></table></figure>
+<p>修改 package.json，将：</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;echo \&quot;Error: no test specified\&quot; &amp;&amp; exit 1&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;mocha --harmony test&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>指定执行 test 目录的测试。修改 index.js，将：</p>
+<p><strong>index.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">// 监听端口，启动程序</div><div class="line">app.listen(config.port, function () &#123;</div><div class="line">  console.log(`$&#123;pkg.name&#125; listening on port $&#123;config.port&#125;`);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">if (module.parent) &#123;</div><div class="line">  module.exports = app;</div><div class="line">&#125; else &#123;</div><div class="line">  // 监听端口，启动程序</div><div class="line">  app.listen(config.port, function () &#123;</div><div class="line">    console.log(`$&#123;pkg.name&#125; listening on port $&#123;config.port&#125;`);</div><div class="line">  &#125;);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>这样做可以实现：直接启动 index.js 则会监听端口启动程序，如果 index.js 被 require 了，则导出 app，通常用于测试。</p>
+<p>找一张图片用于测试上传头像，放到 test 目录下，如 avatar.png。新建 test/signup.js，添加如下测试代码：</p>
+<p><strong>test/signup.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div><div class="line">90</div><div class="line">91</div><div class="line">92</div><div class="line">93</div><div class="line">94</div><div class="line">95</div><div class="line">96</div></pre></td><td class="code"><pre><div class="line">var path = require(&apos;path&apos;);</div><div class="line">var assert = require(&apos;assert&apos;);</div><div class="line">var request = require(&apos;supertest&apos;);</div><div class="line">var app = require(&apos;../index&apos;);</div><div class="line">var User = require(&apos;../lib/mongo&apos;).User;</div><div class="line"></div><div class="line">describe(&apos;signup&apos;, function() &#123;</div><div class="line">  describe(&apos;POST /signup&apos;, function() &#123;</div><div class="line">    var agent = request.agent(app);//persist cookie when redirect</div><div class="line">    beforeEach(function (done) &#123;</div><div class="line">      // 创建一个用户</div><div class="line">      User.create(&#123;</div><div class="line">        name: &apos;aaa&apos;,</div><div class="line">        password: &apos;123456&apos;,</div><div class="line">        avatar: &apos;&apos;,</div><div class="line">        gender: &apos;x&apos;,</div><div class="line">        bio: &apos;&apos;</div><div class="line">      &#125;)</div><div class="line">      .exec()</div><div class="line">      .then(function () &#123;</div><div class="line">        done();</div><div class="line">      &#125;)</div><div class="line">      .catch(done);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    afterEach(function (done) &#123;</div><div class="line">      // 清空 users 表</div><div class="line">      User.remove(&#123;&#125;)</div><div class="line">        .exec()</div><div class="line">        .then(function () &#123;</div><div class="line">          done();</div><div class="line">        &#125;)</div><div class="line">        .catch(done);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    // 名户名错误的情况</div><div class="line">    it(&apos;wrong name&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/名字请限制在 1-10 个字符/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    // 性别错误的情况</div><div class="line">    it(&apos;wrong gender&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;nswbmw&apos;, gender: &apos;a&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/性别只能是 m、f 或 x/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">    // 其余的参数测试自行补充</div><div class="line">    // 用户名被占用的情况</div><div class="line">    it(‘duplicate name&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;aaa&apos;, gender: &apos;m&apos;, bio: &apos;noder&apos;, password: &apos;123456&apos;, repassword: &apos;123456&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/用户名已被占用/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line"></div><div class="line">    // 注册成功的情况</div><div class="line">    it(&apos;success&apos;, function(done) &#123;</div><div class="line">      agent</div><div class="line">        .post(&apos;/signup&apos;)</div><div class="line">        .type(&apos;form&apos;)</div><div class="line">        .attach(&apos;avatar&apos;, path.join(__dirname, &apos;avatar.png&apos;))</div><div class="line">        .field(&#123; name: &apos;nswbmw&apos;, gender: &apos;m&apos;, bio: &apos;noder&apos;, password: &apos;123456&apos;, repassword: &apos;123456&apos; &#125;)</div><div class="line">        .redirects()</div><div class="line">        .end(function(err, res) &#123;</div><div class="line">          if (err) return done(err);</div><div class="line">          assert(res.text.match(/注册成功/));</div><div class="line">          done();</div><div class="line">        &#125;);</div><div class="line">    &#125;);</div><div class="line">  &#125;);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>运行 <code>npm test</code> 看看效果吧，其余的测试请读者自行完成。</p>
+<h2 id="4-14-2-测试覆盖率"><a href="#4-14-2-测试覆盖率" class="headerlink" title="4.14.2 测试覆盖率"></a>4.14.2 测试覆盖率</h2><p>我们写测试肯定想覆盖所有的情况（包括各种出错的情况及正确时的情况），但光靠想需要写哪些测试是不行的，总也会有疏漏，最简单的办法就是可以直观的看出测试是否覆盖了所有的代码，这就是测试覆盖率，即被测试覆盖到的代码行数占总代码行数的比例。</p>
+<blockquote>
+<p>注意：即使测试覆盖率达到 100% 也不能说明你的测试覆盖了所有的情况，只能说明基本覆盖了所有的情况。</p>
+</blockquote>
+<p><a href="https://www.npmjs.com/package/istanbul" target="_blank" rel="external">istanbul</a> 是一个常用的生成测试覆盖率的库，它会将测试的结果报告生成 html 页面，并放到项目根目录的 coverage 目录下。首先安装 istanbul:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm i istanbul --save-dev</div></pre></td></tr></table></figure>
+<p>配置 istanbul 很简单，将 package.json 中：</p>
+<p><strong>package.json</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;mocha --harmony test&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&quot;scripts&quot;: &#123;</div><div class="line">  &quot;test&quot;: &quot;node --harmony ./node_modules/.bin/istanbul cover ./node_modules/.bin/_mocha&quot;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<blockquote>
+<p>注意：如果 Windows 下报错，尝试修改为：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&gt; &quot;scripts&quot;: &#123;</div><div class="line">&gt;   &quot;test&quot;: &quot;node --harmony ./node_modules/istanbul/lib/cli.js cover ./node_modules/mocha/bin/_mocha&quot;</div><div class="line">&gt; &#125;</div><div class="line">&gt;</div></pre></td></tr></table></figure></p>
+<p>见 <a href="https://github.com/nswbmw/N-blog/issues/201" target="_blank" rel="external">#201</a>.</p>
+</blockquote>
+<p>即可将 mocha 和 istanbul 结合使用，终端会打印：</p>
+<p><img src="./img/4.14.1.png" alt=""></p>
+<p>打开 myblog/coverage/Icov-report/index.html，如下所示：</p>
+<p><img src="./img/4.14.2.png" alt=""></p>
+<p>可以点进去查看某个代码文件具体的覆盖率，如下所示：</p>
+<p><img src="./img/4.14.3.png" alt=""></p>
+<p>红色的行表示测试没有覆盖到，因为我们只写了 name 和 gender 的测试。</p>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node搭建博客/" rel="tag">#node搭建博客</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.12 错误页面/" class="post-nav-title-link" rel="prev" title="错误页面">
+                <i class="fa fa-chevron-left"></i> 错误页面 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/2.1 require/" class="post-nav-title-link" rel="next" title="require">
+                require  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-14-1-mocha-和-supertest"><span class="nav-number">1.</span> <span class="nav-text">4.14.1 mocha 和 supertest</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-14-2-测试覆盖率"><span class="nav-number">2.</span> <span class="nav-text">4.14.2 测试覆盖率</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>

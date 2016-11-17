@@ -254,8 +254,8 @@
             
               
                 
-                <a class="post-title-link" href="/2016/11/04/node/node核心模块/" itemprop="url">
-                  node核心模块
+                <a class="post-title-link" href="/2016/11/04/node/fs 模块/" itemprop="url">
+                  fs模块
                 </a>
               
             
@@ -298,13 +298,120 @@
       
         
           
-          核心模块
-nodejs与commonjs之间的关系nodejs是一种服务器语言。commonjs是nodejs的规范。
-commonjs规范的意义虽然nodejs的语法层面是用js来写的，但是js的标准ECMAScript存在太多的缺陷，它只是规范了javascript中的词法、类型、表达式、方法、
+          fs&nbsp;模块fs是filesystem的缩写，该模块提供本地文件的读写能力，基本上是POSIX文件操作命令的简单包装。但是，这个模块几乎对所有操作提供异步和同步两种操作方式，供开发者选择。
+
+1.&nbsp;readFile()，readFileSync()readFile方法用于异步读取数
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/04/node/node核心模块/#more" rel="contents">
+            <a class="btn" href="/2016/11/04/node/fs 模块/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/04/node/node的安装于使用/" itemprop="url">
+                  node的安装
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          nvm# js的模块话
+1.0 js的模块化什么是模块化？，模块化的概念最早是后台中德，随着ajax技术的兴起，js在编程中所占的地位越来越高，同时js的文件也相应的越来越多，为了方便文件的管理和更新，提出了js文件的模块化，将同一类型功能组合在一起。
+模块化的演变过程1.普通的方法书写格式
+
+多人
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/04/node/node的安装于使用/#more" rel="contents">
               Weiterlesen &raquo;
             </a>
           </div>
@@ -465,8 +572,8 @@ globall:表示Node所在的全局环境，类似于window对象，但又不尽�
             
               
                 
-                <a class="post-title-link" href="/2016/11/04/node/node的安装于使用/" itemprop="url">
-                  node的安装
+                <a class="post-title-link" href="/2016/11/04/ECMAScript 6/变量的解构赋值/" itemprop="url">
+                  结构赋值
                 </a>
               
             
@@ -509,15 +616,16 @@ globall:表示Node所在的全局环境，类似于window对象，但又不尽�
       
         
           
-          nvm# js的模块话
-1.0 js的模块化什么是模块化？，模块化的概念最早是后台中德，随着ajax技术的兴起，js在编程中所占的地位越来越高，同时js的文件也相应的越来越多，为了方便文件的管理和更新，提出了js文件的模块化，将同一类型功能组合在一起。
-模块化的演变过程1.普通的方法书写格式
+          解构赋值允许你使用类似数组或对象字面量的语法将数组和对象的属性赋给各种变量。这种赋值语法极度简洁，同时还比传统的属性访问方法更为清晰。
 
-多人
+1.数组的解构赋值基本用法以前,为变量赋值,只能直接指定值。
+12var a = 1;var b = 2;
+ES6允许写成下面的形式
+1var [a,b]=[1,
           ...
 
           <div class="post-more-link text-center">
-            <a class="btn" href="/2016/11/04/node/node的安装于使用/#more" rel="contents">
+            <a class="btn" href="/2016/11/04/ECMAScript 6/变量的解构赋值/#more" rel="contents">
               Weiterlesen &raquo;
             </a>
           </div>
@@ -776,11 +884,430 @@ Ph
 
 
     
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/04/node搭建博客/2.2 exports 和 module.exports/" itemprop="url">
+                  exports 和 module.exports
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          require 用来加载代码，而 exports 和 module.exports 则用来导出代码。
+很多新手可能会迷惑于 exports 和 module.exports 的区别，为了更好的理解 exports 和 module.exports 的关系，我们先来巩固下 js 的基础。示例：
+tes
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/04/node搭建博客/2.2 exports 和 module.exports/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/04/node搭建博客/1.2 MongoDB 的安装与使用/" itemprop="url">
+                  安装与启动 MongoDB
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.2.1 安装与启动 MongoDB
+Windows 用户向导：https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+Linux 用户向导：https://docs.mongodb.com/manual/admin
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/04/node搭建博客/1.2 MongoDB 的安装与使用/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/04/node搭建博客/1.1 Node.js 的安装与使用/" itemprop="url">
+                  安装 Node.js
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          1.1.1 安装 Node.js有三种方式安装 Node.js：一是通过安装包安装，二是通过源码编译安装，三是在 Linux 下可以通过 yum|apt-get 安装，在 Mac 下可以通过 Homebrew 安装。对于 Windows 和 Mac 用户，推荐使用安装包安装，Linux 用户推荐使用
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/04/node搭建博客/1.1 Node.js 的安装与使用/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/11/04/node搭建博客/2.3 Promise/" itemprop="url">
+                  Promise
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+          网上已经有许多关于 Promise 的资料了，这里不在赘述。以下 4 个链接供读者学习：
+
+https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise （基础）
+http://liu
+          ...
+
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/11/04/node搭建博客/2.3 Promise/#more" rel="contents">
+              Weiterlesen &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+	<div>
+      
+    </div>
+	
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
   </section>
 
   
   <nav class="pagination">
-    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span>
+    <a class="extend prev" rel="prev" href="/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/3/"><i class="fa fa-angle-right"></i></a>
   </nav>
 
 
@@ -821,7 +1348,7 @@ Ph
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">15</span>
+              <span class="site-state-item-count">43</span>
               <span class="site-state-item-name">Artikel</span>
             </a>
           </div>
@@ -831,7 +1358,7 @@ Ph
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">Tags</span>
               </a>
             </div>

@@ -1,0 +1,695 @@
+<!doctype html>
+
+
+
+
+<html class="theme-next pisces">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="node搭建博客," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/images/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="4.10.1 留言模型设计我们只需要留言的作者 id、留言内容和关联的文章 id 这几个字段，修改 lib/mongo.js，添加如下代码：
+lib/mongo.js
+1234567exports.Comment = mongolass.model(&amp;apos;Comment&amp;apos;, &amp;#123;  author: &amp;#123; type: Mongolass.Types.ObjectId">
+<meta property="og:type" content="article">
+<meta property="og:title" content="留言">
+<meta property="og:url" content="http://yoursite.com/2016/11/04/node搭建博客/4.10 留言/index.html">
+<meta property="og:site_name" content="wuchao">
+<meta property="og:description" content="4.10.1 留言模型设计我们只需要留言的作者 id、留言内容和关联的文章 id 这几个字段，修改 lib/mongo.js，添加如下代码：
+lib/mongo.js
+1234567exports.Comment = mongolass.model(&amp;apos;Comment&amp;apos;, &amp;#123;  author: &amp;#123; type: Mongolass.Types.ObjectId">
+<meta property="og:updated_time" content="2016-11-17T05:36:26.157Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="留言">
+<meta name="twitter:description" content="4.10.1 留言模型设计我们只需要留言的作者 id、留言内容和关联的文章 id 这几个字段，修改 lib/mongo.js，添加如下代码：
+lib/mongo.js
+1234567exports.Comment = mongolass.model(&amp;apos;Comment&amp;apos;, &amp;#123;  author: &amp;#123; type: Mongolass.Types.ObjectId">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Pisces',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: false,
+    duoshuo: {
+      userId: 0,
+      author: 'Author'
+    }
+  };
+</script>
+
+  <title> 留言 | wuchao  -  </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+
+
+
+
+
+
+
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta custom-logo">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">wuchao</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle" id="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button onclick="showSubtitle()">
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav" id="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            Startseite
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            Kategorien
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-calendar-check-o"></i> <br />
+            
+            Archiv
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            Tags
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            Über
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-tags " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                留言
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">Veröffentlicht am</span>
+            <time itemprop="dateCreated" datetime="2016-11-04T17:22:22+08:00" content="2016-11-04">
+              2016-11-04
+            </time>
+          </span>
+
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="4-10-1-留言模型设计"><a href="#4-10-1-留言模型设计" class="headerlink" title="4.10.1 留言模型设计"></a>4.10.1 留言模型设计</h2><p>我们只需要留言的作者 id、留言内容和关联的文章 id 这几个字段，修改 lib/mongo.js，添加如下代码：</p>
+<p><strong>lib/mongo.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">exports.Comment = mongolass.model(&apos;Comment&apos;, &#123;</div><div class="line">  author: &#123; type: Mongolass.Types.ObjectId &#125;,</div><div class="line">  content: &#123; type: &apos;string&apos; &#125;,</div><div class="line">  postId: &#123; type: Mongolass.Types.ObjectId &#125;</div><div class="line">&#125;);</div><div class="line">exports.Post.index(&#123; postId: 1, _id: 1 &#125;).exec();// 通过文章 id 获取该文章下所有留言，按留言创建时间升序</div><div class="line">exports.Post.index(&#123; author: 1, _id: 1 &#125;).exec();// 通过用户 id 和留言 id 删除一个留言</div></pre></td></tr></table></figure>
+<h2 id="4-10-2-显示留言"><a href="#4-10-2-显示留言" class="headerlink" title="4.10.2 显示留言"></a>4.10.2 显示留言</h2><p>在实现留言功能之前，我们先让文章页可以显示留言列表。首先创建留言的模板，新建 views/components/comments.ejs，添加如下代码：</p>
+<p><strong>views/components/comments.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div></pre></td><td class="code"><pre><div class="line">&lt;div class=&quot;ui grid&quot;&gt;</div><div class="line">  &lt;div class=&quot;four wide column&quot;&gt;&lt;/div&gt;</div><div class="line">  &lt;div class=&quot;eight wide column&quot;&gt;</div><div class="line">    &lt;div class=&quot;ui segment&quot;&gt;</div><div class="line">      &lt;div class=&quot;ui minimal comments&quot;&gt;</div><div class="line">        &lt;h3 class=&quot;ui dividing header&quot;&gt;留言&lt;/h3&gt;</div><div class="line"></div><div class="line">        &lt;% comments.forEach(function (comment) &#123; %&gt;</div><div class="line">          &lt;div class=&quot;comment&quot;&gt;</div><div class="line">            &lt;span class=&quot;avatar&quot;&gt;</div><div class="line">              &lt;img src=&quot;/img/&lt;%= comment.author.avatar %&gt;&quot;&gt;</div><div class="line">            &lt;/span&gt;</div><div class="line">            &lt;div class=&quot;content&quot;&gt;</div><div class="line">              &lt;a class=&quot;author&quot; href=&quot;/posts?author=&lt;%= comment.author._id %&gt;&quot;&gt;&lt;%= comment.author.name %&gt;&lt;/a&gt;</div><div class="line">              &lt;div class=&quot;metadata&quot;&gt;</div><div class="line">                &lt;span class=&quot;date&quot;&gt;&lt;%= comment.created_at %&gt;&lt;/span&gt;</div><div class="line">              &lt;/div&gt;</div><div class="line">              &lt;div class=&quot;text&quot;&gt;&lt;%- comment.content %&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">              &lt;% if (user &amp;&amp; comment.author._id &amp;&amp; user._id.toString() === comment.author._id.toString()) &#123; %&gt;</div><div class="line">                &lt;div class=&quot;actions&quot;&gt;</div><div class="line">                  &lt;a class=&quot;reply&quot; href=&quot;/posts/&lt;%= post._id %&gt;/comment/&lt;%= comment._id %&gt;/remove&quot;&gt;删除&lt;/a&gt;</div><div class="line">                &lt;/div&gt;</div><div class="line">              &lt;% &#125; %&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">          &lt;/div&gt;</div><div class="line">        &lt;% &#125;) %&gt;</div><div class="line"></div><div class="line">        &lt;% if (user) &#123; %&gt;</div><div class="line">          &lt;form class=&quot;ui reply form&quot; method=&quot;post&quot; action=&quot;/posts/&lt;%= post._id %&gt;/comment&quot;&gt;</div><div class="line">            &lt;div class=&quot;field&quot;&gt;</div><div class="line">              &lt;textarea name=&quot;content&quot;&gt;&lt;/textarea&gt;</div><div class="line">            &lt;/div&gt;</div><div class="line">            &lt;input type=&quot;submit&quot; class=&quot;ui icon button&quot; value=&quot;留言&quot; /&gt;</div><div class="line">          &lt;/form&gt;</div><div class="line">        &lt;% &#125; %&gt;</div><div class="line"></div><div class="line">      &lt;/div&gt;</div><div class="line">    &lt;/div&gt;</div><div class="line">  &lt;/div&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure>
+<p>在文章页引入留言的模板片段，修改 views/post.ejs 为：</p>
+<p><strong>views/post.ejs</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">&lt;%- include(&apos;header&apos;) %&gt;</div><div class="line"></div><div class="line">&lt;%- include(&apos;components/post-content&apos;) %&gt;</div><div class="line">&lt;%- include(&apos;components/comments&apos;) %&gt;</div><div class="line"></div><div class="line">&lt;%- include(&apos;footer&apos;) %&gt;</div></pre></td></tr></table></figure>
+<p>新建 models/comments.js，添加如下代码：</p>
+<p><strong>models/comments.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div></pre></td><td class="code"><pre><div class="line">var marked = require(&apos;marked&apos;);</div><div class="line">var Comment = require(&apos;../lib/mongo&apos;).Comment;</div><div class="line"></div><div class="line">// 将 comment 的 content 从 markdown 转换成 html</div><div class="line">Comment.plugin(&apos;contentToHtml&apos;, &#123;</div><div class="line">  afterFind: function (comments) &#123;</div><div class="line">    return comments.map(function (comment) &#123;</div><div class="line">      comment.content = marked(comment.content);</div><div class="line">      return comment;</div><div class="line">    &#125;);</div><div class="line">  &#125;</div><div class="line">&#125;);</div><div class="line"></div><div class="line">module.exports = &#123;</div><div class="line">  // 创建一个留言</div><div class="line">  create: function create(comment) &#123;</div><div class="line">    return Comment.create(comment).exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // 通过用户 id 和留言 id 删除一个留言</div><div class="line">  delCommentById: function delCommentById(commentId, author) &#123;</div><div class="line">    return Comment.remove(&#123; author: author, _id: commentId &#125;).exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // 通过文章 id 获取该文章下所有留言，按留言创建时间升序</div><div class="line">  getComments: function getComments(postId) &#123;</div><div class="line">    return Comment</div><div class="line">      .find(&#123; postId: postId &#125;)</div><div class="line">      .populate(&#123; path: &apos;author&apos;, model: &apos;User&apos; &#125;)</div><div class="line">      .sort(&#123; _id: 1 &#125;)</div><div class="line">      .addCreatedAt()</div><div class="line">      .contentToHtml()</div><div class="line">      .exec();</div><div class="line">  &#125;,</div><div class="line"></div><div class="line">  // 通过文章 id 获取该文章下留言数</div><div class="line">  getCommentsCount: function getCommentsCount(postId) &#123;</div><div class="line">    return Comment.count(&#123; postId: postId &#125;).exec();</div><div class="line">  &#125;</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
+<blockquote>
+<p> 小提示：我们让留言也支持了 markdown。</p>
+<p>注意：其实通过 commentId 就可以唯一确定并删除一条留言，添加 author 的限制是为了防止用户删除他人的留言。</p>
+</blockquote>
+<p>修改 models/posts.js，在：</p>
+<p><strong>models/posts.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var Post = require(&apos;../lib/mongo&apos;).Post;</div></pre></td></tr></table></figure>
+<p>下添加如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">var CommentModel = require(&apos;./comments&apos;);</div><div class="line"></div><div class="line">// 给 post 添加留言数 commentsCount</div><div class="line">Post.plugin(&apos;addCommentsCount&apos;, &#123;</div><div class="line">  afterFind: function (posts) &#123;</div><div class="line">    return Promise.all(posts.map(function (post) &#123;</div><div class="line">      return CommentModel.getCommentsCount(post._id).then(function (commentsCount) &#123;</div><div class="line">        post.commentsCount = commentsCount;</div><div class="line">        return post;</div><div class="line">      &#125;);</div><div class="line">    &#125;));</div><div class="line">  &#125;,</div><div class="line">  afterFindOne: function (post) &#123;</div><div class="line">    if (post) &#123;</div><div class="line">      return CommentModel.getCommentsCount(post._id).then(function (count) &#123;</div><div class="line">        post.commentsCount = count;</div><div class="line">        return post;</div><div class="line">      &#125;);</div><div class="line">    &#125;</div><div class="line">    return post;</div><div class="line">  &#125;</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>在 PostModel 上注册了 <code>addCommentsCount</code> 用来给每篇文章添加留言数 <code>commentsCount</code>，在 <code>getPostById</code> 和 <code>getPosts</code> 方法里的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.addCreatedAt()</div></pre></td></tr></table></figure>
+<p>下添加：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">.addCommentsCount()</div></pre></td></tr></table></figure>
+<p>这样主页和文章页的文章就可以正常显示留言数了。</p>
+<blockquote>
+<p>小提示：虽然目前看起来使用 Mongolass 自定义插件并不能节省代码，反而使代码变多了。Mongolass 插件真正的优势在于：在项目非常庞大时，可通过自定义的插件随意组合（及顺序）实现不同的输出，如上面的 <code>getPostById</code> 需要将取出 markdown 转换成 html，则使用 <code>.contentToHtml()</code>，否则像 <code>getRawPostById</code> 则不使用。</p>
+</blockquote>
+<p>修改 routes/posts.js，在：</p>
+<p><strong>routes/posts.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var PostModel = require(&apos;../models/posts&apos;);</div></pre></td></tr></table></figure>
+<p>下引入 CommentModel:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">var CommentModel = require(&apos;../models/comments&apos;);</div></pre></td></tr></table></figure>
+<p>在文章页传入留言列表，将：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">// GET /posts/:postId 单独一篇的文章页</div><div class="line">router.get(&apos;/:postId&apos;, function(req, res, next) &#123;</div><div class="line">  var postId = req.params.postId;</div><div class="line"></div><div class="line">  Promise.all([</div><div class="line">    PostModel.getPostById(postId),// 获取文章信息</div><div class="line">    PostModel.incPv(postId)// pv 加 1</div><div class="line">  ])</div><div class="line">  .then(function (result) &#123;</div><div class="line">    var post = result[0];</div><div class="line">    if (!post) &#123;</div><div class="line">      throw new Error(&apos;该文章不存在&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    res.render(&apos;post&apos;, &#123;</div><div class="line">      post: post</div><div class="line">    &#125;);</div><div class="line">  &#125;)</div><div class="line">  .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line">// GET /posts/:postId 单独一篇的文章页</div><div class="line">router.get(&apos;/:postId&apos;, function(req, res, next) &#123;</div><div class="line">  var postId = req.params.postId;</div><div class="line"></div><div class="line">  Promise.all([</div><div class="line">    PostModel.getPostById(postId),// 获取文章信息</div><div class="line">    CommentModel.getComments(postId),// 获取该文章所有留言</div><div class="line">    PostModel.incPv(postId)// pv 加 1</div><div class="line">  ])</div><div class="line">  .then(function (result) &#123;</div><div class="line">    var post = result[0];</div><div class="line">    var comments = result[1];</div><div class="line">    if (!post) &#123;</div><div class="line">      throw new Error(&apos;该文章不存在&apos;);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    res.render(&apos;post&apos;, &#123;</div><div class="line">      post: post,</div><div class="line">      comments: comments</div><div class="line">    &#125;);</div><div class="line">  &#125;)</div><div class="line">  .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>现在刷新文章页试试吧。</p>
+<h2 id="4-10-3-发表与删除留言"><a href="#4-10-3-发表与删除留言" class="headerlink" title="4.10.3 发表与删除留言"></a>4.10.3 发表与删除留言</h2><p>现在我们来实现发表与删除留言的功能。修改 routes/posts.js，将：</p>
+<p><strong>routes/posts.js</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">// POST /posts/:postId/comment 创建一条留言</div><div class="line">router.post(&apos;/:postId/comment&apos;, checkLogin, function(req, res, next) &#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// GET /posts/:postId/comment/:commentId/remove 删除一条留言</div><div class="line">router.get(&apos;/:postId/comment/:commentId/remove&apos;, checkLogin, function(req, res, next) &#123;</div><div class="line">  res.send(req.flash());</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+<p>修改为：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line">// POST /posts/:postId/comment 创建一条留言</div><div class="line">router.post(&apos;/:postId/comment&apos;, checkLogin, function(req, res, next) &#123;</div><div class="line">  var author = req.session.user._id;</div><div class="line">  var postId = req.params.postId;</div><div class="line">  var content = req.fields.content;</div><div class="line">  var comment = &#123;</div><div class="line">    author: author,</div><div class="line">    postId: postId,</div><div class="line">    content: content</div><div class="line">  &#125;;</div><div class="line"></div><div class="line">  CommentModel.create(comment)</div><div class="line">    .then(function () &#123;</div><div class="line">      req.flash(&apos;success&apos;, &apos;留言成功&apos;);</div><div class="line">      // 留言成功后跳转到上一页</div><div class="line">      res.redirect(&apos;back&apos;);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div><div class="line"></div><div class="line">// GET /posts/:postId/comment/:commentId/remove 删除一条留言</div><div class="line">router.get(&apos;/:postId/comment/:commentId/remove&apos;, checkLogin, function(req, res, next) &#123;</div><div class="line">  var commentId = req.params.commentId;</div><div class="line">  var author = req.session.user._id;</div><div class="line"></div><div class="line">  CommentModel.delCommentById(commentId, author)</div><div class="line">    .then(function () &#123;</div><div class="line">      req.flash(&apos;success&apos;, &apos;删除留言成功&apos;);</div><div class="line">      // 删除成功后跳转到上一页</div><div class="line">      res.redirect(&apos;back&apos;);</div><div class="line">    &#125;)</div><div class="line">    .catch(next);</div><div class="line">&#125;);</div></pre></td></tr></table></figure>
+
+      
+    </div>
+
+	<div>
+      
+        
+<div style="text-align:center;color: #ccc;font-size:14px;">------ 本文结束 ------</div>
+
+      
+    </div>
+	
+    <div>
+      
+        
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/node搭建博客/" rel="tag">#node搭建博客</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.13 日志/" class="post-nav-title-link" rel="prev" title="日志">
+                <i class="fa fa-chevron-left"></i> 日志 
+              </a>
+            
+          </div>
+		  
+		  <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/11/04/node搭建博客/4.15 部署/" class="post-nav-title-link" rel="next" title="部署">
+                部署  <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            Inhaltsverzeichnis
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            Übersicht
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="wu chao" />
+          <p class="site-author-name" itemprop="name">wu chao</p>
+          <p class="site-description motion-element" itemprop="description">悠然，随心，随性，随缘</p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">43</span>
+              <span class="site-state-item-name">Artikel</span>
+            </a>
+          </div>
+
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">8</span>
+                <span class="site-state-item-name">Tags</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/wuchaoya" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-10-1-留言模型设计"><span class="nav-number">1.</span> <span class="nav-text">4.10.1 留言模型设计</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-10-2-显示留言"><span class="nav-number">2.</span> <span class="nav-text">4.10.2 显示留言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-10-3-发表与删除留言"><span class="nav-number">3.</span> <span class="nav-text">4.10.3 发表与删除留言</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  Article - 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">wu chao</span>
+  
+   <span style="margin-left:8px;">
+   <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+   </span>
+  
+</div>
+
+<div class="powered-by">
+  Erstellt mit  <a class="theme-link" href="http://hexo.io" target="_blank">Hexo</a>
+</div>
+
+<div class="theme-info">
+  Theme -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next" target="_blank">
+    NexT.Pisces
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+
+  <script type="text/javascript" src="/js/src/affix.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/schemes/pisces.js?v=5.0.1"></script>
+
+
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+  
+  
+
+  
+
+  
+
+  <div style="display: none;">
+    <script src="http://s6.cnzz.com/stat.php?id=1259784696&web_id=1259784696" type="text/javascript"></script>
+  </div>
+
+
+
+  
+<script type="text/javascript" async src="//push.zhanzhang.baidu.com/push.js">
+</script>
+
+  <script type="text/JavaScript">
+function hideElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="none";
+}
+
+function showElement(elementID)
+{
+	var myele=document.getElementById(elementID);
+	myele.style.display="block";
+}
+</script>
+
+<script type="text/JavaScript">
+function showSubtitle()
+{
+  var siteNav=document.getElementById("site-nav");
+  if(siteNav.style.display=="block")
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="none";
+  }else
+  {
+   var subTitle=document.getElementById("site-subtitle");
+   subTitle.style.display="block";
+  }
+
+}
+</script>
+
+</body>
+</html>
